@@ -142,41 +142,7 @@
       </div>
       </div>
       
-      <div class="bg-faded rounded p-5">
-              <h2 class="section-heading mb-4">
-                
-                <span class="section-heading-upper">Les éléments architecturaux</span>
-              </h2>
-              
-               <table class="table">
-    <thead>
-      <tr>
-        <th>Elément</th>
-        <th>Fonction</th>
-        <th>Explication</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Ventilation</td>
-        <td>Ventilation transversale</td>
-        <td>Systèmes traditionnels de conditionnement de l’air : La porte d'entrée de la maison est percée, sur son montant fixe, d'une ouverture munie d'une grille qui permet de faire entrer l'air ombragé de la rue pour lui faire traverser les soubassements plus frais avant de pénétrer dans l’escalier qui dessert la maison</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Effet cheminée</td>
-        <td>Obtenue à partir de l’ouverture du Wast-al-dar sur le ciel          
- 
-</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Evacuation de la fumée</td>
-        <td>Dans la cuisine : Un vide d’aération conduisant vers la cheminée de la terrasse : un espace qui sépare le mur extérieur des planchers voutains.</td>
-      </tr>
-    </tbody>
-  </table>
-              </div>
+     
             
             <div class="bg-faded rounded p-5">
               <h2 class="section-heading mb-4">
@@ -210,9 +176,12 @@
 					</div>
               
              </div>
+             <a href="EltArchi">
+             <button type="submit"style="width:130px" class="btn btn-primary btn-xl" >Suite </button></a>
    
            </div>        
   <br>
+  
 
 <%@include file="footer.jsp" %>
  

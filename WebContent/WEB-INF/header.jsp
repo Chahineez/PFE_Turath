@@ -1,4 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib
+	          prefix="c"
+	          uri="http://java.sun.com/jsp/jstl/core" 
+	        %>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -53,6 +57,21 @@
           </li>
            <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="Contact">Contact</a>
+          </li>
+          
+          <li class="nav-item px-lg-4">
+          <c:if test="${!empty sessionScope.prenomNom}"> 
+          <div class="dropdown">
+         <!--    <a class="nav-link text-uppercase text-expanded" href="#"> --> <img class=" rounded" src="img/avatar.jpg" alt=""> <h5>${sessionScope.prenom}</h5> <!--  </a>-->
+           <div class="dropdown-content">
+		    <a href="#">Ajouter Elements</a>
+		    <a href="#">Se déconnecter</a>
+			</div>
+		  </div>
+           </c:if>
+           <c:if test="${empty sessionScope.prenomNom}">
+            <a class="nav-link text-uppercase text-expanded" href="login">Se connecter</a>
+            </c:if>
           </li>
           
           

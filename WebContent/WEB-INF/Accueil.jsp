@@ -50,7 +50,7 @@
             <label></label>
                 <input class="rounded champ text-center" id="keyWord" name="keyWord" placeholder="Recherche par mot clé" >
            
-            <button type="submit" class="btn btn-primary btn-xl">Chercher</button>
+            <button type="submit"style="width:130px" class="btn btn-primary btn-xl">Chercher</button>
              </div>
         
               </form>
