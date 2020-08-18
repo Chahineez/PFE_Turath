@@ -1,29 +1,24 @@
 package com.turath.servlets;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.turath.control.Recherche;
-import com.turath.sdb.SDBManipulation;
-
 /**
- * Servlet implementation class Maisons
+ * Servlet implementation class RegistrationExpert
  */
-@WebServlet("/MaisonsArchitecte")
-public class MaisonsArchitecte extends HttpServlet {
+@WebServlet("/RegistrationExpert")
+public class RegistrationExpert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/MaisonsArchitecte.jsp";
+	public static final String VUE ="/WEB-INF/RegistrationExpert.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MaisonsArchitecte() {
+    public RegistrationExpert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +27,7 @@ public class MaisonsArchitecte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		SDBManipulation sdb = new  SDBManipulation();
-		Recherche rech= new Recherche();
-		sdb.connexionASDB();
-		List<com.turath.model.Maison> mais = rech.listeMaisons(sdb.getDataset());	
-		sdb.deconnexionDeSDB();
-		request.setAttribute("mais", mais);
-
+		// TODO Auto-generated method stub
 		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
 	}
 

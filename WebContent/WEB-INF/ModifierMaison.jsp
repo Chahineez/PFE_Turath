@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ajouter élément</title>
+<title>Modifier Elément</title>
 </head>
 <body>
 <%@include file="header.jsp" %>
@@ -17,26 +17,27 @@
   	
   		<div class="bg-faded p-5">
   
-      	<p class="h5 mb-6">Ajouter une maison traditionnelle :</p><br>
+      	<p class="h5 mb-6">Modifier une maison traditionnelle :</p><br>
       <div class="form-row mb-4">
       
        <div class="form-group">
       <div class="col-lg-30">
             <p >Le nom de la maison:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nom de la maison"  name="nom_mai" id="nom_mai">
+            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nom de la maison" value="Dar El Bekri" name="nom_mai" id="nom_mai">
           </p>
         </div>
 
-<input type="checkbox" onchange="handleNom(this);"> Cette maison a un autre nom.<br><br>
-<div id="autre_nom" style="visibility:hidden;class=col-lg-30">
+
+<div id="autre_nom" class="col-lg-30">
 <p >Le deuxième nom de la maison:
-<input type="text" class="form-control form-control-lg form-control-a" placeholder="Le deuxième nom de la maison"  name="nom_deux_mai" id="nom_deux_mai">
+<input type="text" class="form-control form-control-lg form-control-a" placeholder="Le deuxième nom de la maison" value="Dar Khedaoudj El Amia" name="nom_deux_mai" id="nom_deux_mai">
  </p>
 </div>      
 
              <p >La description de la maison:
-              <textarea  class="form-control" name="description_mai"  id="description_mai" 
-              data-rule="required"  placeholder="Description de la maison"></textarea>
+              <input class="form-control" name="description_mai"  id="description_mai" 
+              data-rule="required"  value="Dar Khedaoudj El Amia se situe au niveau du quartier Souk-el-Djemâa, bordant la rue Mohamed Malek. Authentique palais construit en 1570 par Yahia Rais « officier de la flotte Algérienne » Propriété de la fille du Dey, elle fut occupée par le trésorier du Dey Med Ben Athmane, elle fut ensuite, la 1ere mairie Française d’Alger, en 1909, elle devient l’hôtel particulier du premier président de la cour d’appel.En1947 elle est aménagée en maison d’artisanat. Classée en 1887, elle abrite actuellement le musée des arts et traditions populaires depuis 1987. Elle a subi des travaux de réhabilitation après 2003."
+              placeholder="Description de la maison"/>
               </p>
               
               <p >Le type de la maison:
@@ -51,28 +52,28 @@
                  
            <div class="row">
             <p> Altitude:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Altitude"  name="altitude_mai" id="altitude_mai">
+            <input type="text" class="form-control form-control-lg form-control-a" value="36.78669" placeholder="Altitude"  name="altitude_mai" id="altitude_mai">
             </p>
             <p> Longitude:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Longitude"  name="longitude_mai" id="longitude_mai">
+            <input type="text" class="form-control form-control-lg form-control-a" value="3.06103" placeholder="Longitude"  name="longitude_mai" id="longitude_mai">
             </p>
             </div>
        
            <div class="row">
              <p> Date de la construction :
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Date de la construction"  name="date_const_mai" id="date_const_mai">
+            <input type="text" class="form-control form-control-lg form-control-a" value="1570" placeholder="Date de la construction"  name="date_const_mai" id="date_const_mai">
             </p>
             <p> Période de la construction :
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Période de la construction"  name="période_const_mai" id="période_const_mai">
+            <input type="text" class="form-control form-control-lg form-control-a" value="" placeholder="Période de la construction"  name="période_const_mai" id="période_const_mai">
             </p>
          </div>
          
           <div class="row">
              <p> Surface du sol :
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Surface du sol"  name="surface_sol" id="surface_sol">
+            <input type="text" class="form-control form-control-lg form-control-a"  value="" placeholder="Surface du sol"  name="surface_sol" id="surface_sol">
             </p>
             <p> Surface de la maison :
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Surface de la maison"  name="surface_mai" id="surface_mai">
+            <input type="text" class="form-control form-control-lg form-control-a"  value="" placeholder="Surface de la maison"  name="surface_mai" id="surface_mai">
             </p>
          </div>
          

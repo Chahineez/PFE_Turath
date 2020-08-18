@@ -61,8 +61,10 @@ public class Registration extends HttpServlet {
 		String password=request.getParameter("password");
 		String nom=request.getParameter("nom");
 		String prenom=request.getParameter("prenom");
-		String etablissement=request.getParameter("etablissement");
-		Architecte archi= new Architecte(email, password,nom,prenom,etablissement,false);
+		String etablissement=request.getParameter("etablissement").toString();
+		String piece_identity=request.getParameter("piece_identity");		
+		String diplome=request.getParameter("diplome");
+		Architecte archi= new Architecte(email, password,nom,prenom,etablissement,false,piece_identity,diplome);
 		SDBActorsConnection SDBActConn = new SDBActorsConnection();
 		int id = 0;
 		try {
@@ -78,6 +80,8 @@ public class Registration extends HttpServlet {
 		archi.setNom(nom);
 		archi.setPrenom(prenom);
 		archi.setEtablissement(etablissement);
+		archi.setPiece_identity(piece_identity);
+		archi.setDiplome(diplome);
 		//SDBManipulation conx= new SDBManipulation();
 		//conx.connexionASDB();
 		try {

@@ -47,7 +47,7 @@
            
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="Maisons">Les Maisons traditionnelles</a>
+            <a class="nav-link text-uppercase text-expanded" href="MaisonsArchitecte">Les Maisons traditionnelles</a>
           </li>
           <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="Monuments">Les Monuments historiques</a>
@@ -64,8 +64,8 @@
           <div class="dropdown">
          <!--    <a class="nav-link text-uppercase text-expanded" href="#"> --> <img class=" rounded" src="img/avatar.jpg" alt=""> <h5>${sessionScope.prenom}</h5> <!--  </a>-->
            <div class="dropdown-content">
-		    <a href="#">Ajouter Elements</a>
-		    <a href="#">Se déconnecter</a>
+		    <a href="ajoutMai">Ajouter Elements</a>
+		    <a href="Logout" onclick="return confirm('Etes vous sûr de vouloir se déconnecter de votre compte?'); ">Se déconnecter</a>
 			</div>
 		  </div>
            </c:if>

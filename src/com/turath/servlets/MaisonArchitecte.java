@@ -14,7 +14,7 @@ import com.turath.sdb.SDBManipulation;
 /**
  * Servlet implementation class Maison
  */
-@WebServlet("/MaisonArchi")
+@WebServlet("/MaisonArchitecte")
 public class MaisonArchitecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String VUE ="/WEB-INF/MaisonArchitecte.jsp";

@@ -1,6 +1,7 @@
- package com.turath.SDBActorsBean;
+package com.turath.SDBActorsBean;
 
-public class Architecte {
+public class Expert {
+
 	private int id;
 	private String mail;
 	private String password;
@@ -11,9 +12,11 @@ public class Architecte {
 	private String piece_identity;
 	private String diplome;
 
+
+
 	
 
-	public Architecte(int id, String mail, String password, String nom, String prenom, String etablissement, String piece_identity, String diplome) {
+	public Expert(int id, String mail, String password, String nom, String prenom, String etablissement, String piece_identity, String diplome) {
 		super();
 		this.id = id;
 		this.mail = mail;
@@ -23,9 +26,10 @@ public class Architecte {
 		this.etablissement= etablissement;
 		this.piece_identity=piece_identity;
 		this.diplome=diplome;
+
 	}
 
-	public Architecte(int id, String mail, String password, String nom, String prenom, String etablissement,  boolean valide, String piece_identity, String diplome) {
+	public Expert(int id, String mail, String password, String nom, String prenom, String etablissement,  boolean valide, String piece_identity, String diplome) {
 		super();
 		this.id = id;
 		this.mail = mail;
@@ -38,7 +42,7 @@ public class Architecte {
 		this.diplome=diplome;
 	}
 	
-	public Architecte( String mail, String password, String nom, String prenom,  String etablissement, boolean valide, String piece_identity, String diplome) {
+	public Expert( String mail, String password, String nom, String prenom,  String etablissement, boolean valide, String piece_identity, String diplome) {
 		super();
 		this.mail = mail;
 		this.password = password;
@@ -51,14 +55,14 @@ public class Architecte {
 	}
 	
 
-	public Architecte(String mail, String password) {
+	public Expert(String mail, String password) {
 		super();
 		this.mail = mail;
 		this.password = password;
 	}
 
 
-	public Architecte() {
+	public Expert() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -122,5 +126,6 @@ public class Architecte {
 	public void setDiplome(String diplome) {
 		this.diplome = diplome;
 	}
+
 	
 }

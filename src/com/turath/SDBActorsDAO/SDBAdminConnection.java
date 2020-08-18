@@ -162,8 +162,10 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             String nom = rs.getString(4);
             String prenom = rs.getString(5);
             String etablissement = rs.getString(6);
+            String piece_identity = rs.getString(7);
+            String diplome = rs.getString(8);
            
-            Architecte architecte = new Architecte(id,email,password,nom,prenom,etablissement);
+            Architecte architecte = new Architecte(id,email,password,nom,prenom,etablissement, piece_identity, diplome);
 
             listArchi.add(architecte);
             }

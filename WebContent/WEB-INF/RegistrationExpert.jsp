@@ -42,9 +42,26 @@
                                                 <input class="form-control py-4" id="" name="email" type="text" aria-describedby="emailHelp" placeholder="Entrez votre etablissement" />
                                             </div>
                                             <div class="form-group">
+									          <p> Copie du diplôme :  
+										          <input type="file" name="dip" id="dip" class="form-control form-control-lg form-control-a" 
+										          placeholder="Uploader l'image ou le fichier pdf de votre diplôme">
+										          </p>
+										      <div class="validation"></div>
+										     
+										    </div>
+										    <div class="form-group">
+									          <p> Copie de la pièce d'identité :  
+										          <input type="file" name="image_mai" id="image_mai" class="form-control form-control-lg form-control-a" 
+										          placeholder="Uploader l'image ou le fichier pdf de votre pièce d'identité">
+										          </p>
+										      <div class="validation"></div>
+										     
+										    </div>
+                                            <div class="form-group">
                                                 <label class="small mb-1" for="email">Email</label>
                                                 <input class="form-control py-4" id="email" name="email" type="text" aria-describedby="emailHelp" placeholder="Entrez votre email" />
                                             </div>
+                                            
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -67,6 +84,7 @@
 										          face="verdana"
 										          color="red"> Mot de passe erroné !</font>
 										          </c:if> -->
+										        
                                             <div class="form-group mt-4 mb-0"><button class="btn btn-primary btn-block" type="submit">S'inscrire</button></div>
                                         </form>
                                     </div>

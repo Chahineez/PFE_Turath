@@ -40,7 +40,7 @@
               </h2>
 			  
 			  <!-- Modal Content -->
-			   <form action="Admin" method="post">
+			   <form action="login" method="post">
 				  				
 				  <div class="container">
 				    <label for="email" style="padding-left: 1px;padding-right: 650px;"><b>Email</b></label>

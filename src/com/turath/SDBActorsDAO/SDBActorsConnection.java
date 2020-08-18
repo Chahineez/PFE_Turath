@@ -45,6 +45,8 @@ public class SDBActorsConnection {
             login.setPrenom(rs.getString(5));
             login.setEtablissement(rs.getString(6));
             login.setValide(rs.getBoolean(7));
+            login.setPiece_identity(rs.getString(8));
+            login.setDiplome(rs.getString(9));
 
 
         } catch (SQLException e) {
@@ -65,8 +67,8 @@ public class SDBActorsConnection {
 		}
     	
         String SQL = "INSERT INTO public.\"architecte_table\"(\r\n" + 
-        		"	id, email, password, nom, prenom, etablissement, valide)\r\n" + 
-        		"	VALUES (?, ?, ?, ?, ?, ?, ?)";
+        		"	id, email, password, nom, prenom, etablissement, valide, piece_identity, diplome)\r\n" + 
+        		"	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     
 
@@ -82,6 +84,8 @@ public class SDBActorsConnection {
             pstmt.setString(5, actor.getPrenom());
             pstmt.setString(6, actor.getEtablissement());
             pstmt.setBoolean(7, actor.isValide());
+            pstmt.setString(8, actor.getPiece_identity());
+            pstmt.setString(9, actor.getDiplome());
             pstmt.execute();
             System.out.println("done");
           //  int affectedRows = pstmt.executeUpdate();

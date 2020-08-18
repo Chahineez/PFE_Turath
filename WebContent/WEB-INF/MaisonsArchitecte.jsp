@@ -23,10 +23,10 @@
 </head>
 <body>
 
-<%@include file="headerArchitecte.jsp" %>
+<%@include file="header.jsp" %>
   <br>
   <br>
-<div class="container"> 
+<!--  <div class="container"> --> 
      <div class="row">  
  
      <c:forEach var="mai" items="${mais}">
@@ -49,7 +49,7 @@
             <c:if test = "${mai.images.isEmpty()}">
             </c:if>
           <div class="intro-button mx-auto" >
-            <a class="btn btn-primary btn-xl" href="Maison?idMaison=${mai.idEltPatri}">Voir Plus</a>
+            <a class="btn btn-primary btn-xl" href="MaisonArchitecte?idMaison=${mai.idEltPatri}">Voir Plus</a>
           </div>
            <br>
         </div>
@@ -59,18 +59,26 @@
 
      
 </div>
-<br>
-       <div class="row">
-              <div class="col">  </div>
-               <div class="col"></div>
-              <div class="col"> 
-               <a href="ajoutMai"  class="btn btn-primary btn-xl"  role="button">Ajouter une nouvelle maison</a>
-                  
-               </div>
-             
-              </div>
+<div>
+<div> 
+
 </div>
-    <br>
+</div>
+	<c:if test="${!empty sessionScope.prenomNom}"> 
+		 <br>
+	       <div class="row">
+	              <div class="col">  </div>
+	               <div class="col"></div>
+	              <div class="col"> 
+	               <a href="ajoutMai"  class="btn btn-primary btn-xl"  role="button">Ajouter une nouvelle maison</a>
+	                  
+	               </div>
+	             
+	              </div>
+	  </c:if>
+	             
+<!--  </div> -->
+    
 <%@include file="footer.jsp" %>
        <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

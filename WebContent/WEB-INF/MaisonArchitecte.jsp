@@ -40,7 +40,7 @@
 
 
   <!-- Navigation -->
-  <%@include file="headerArchitecte.jsp" %>
+  <%@include file="header.jsp" %>
  <br>
 
         
@@ -92,9 +92,10 @@
 	                <span class="section-heading-upper">Historique</span>
 	              </h2>
 	              <p>Cette maison a été construite en: ${mai.dateConstruction} </p>
-	              <p class="mb-0">La période de construction : ${mai.périodeConstruction} </p>
+	              <!--  <p class="mb-0">La période de construction : ${mai.périodeConstruction} </p>-->
 	              <p>            </p>
- <p class="mb-0">Fondateur: Hassan Pacha dit Hassan Chaouch </p>
+ <!--  --><p class="mb-0">Fondateur: Yahia Rais, officier de la marine algérienne.
+                                            </p>
 	            
 	             </div>
 	              
@@ -117,10 +118,10 @@
               Longitude: ${mai.longitude}
               </li>
               <li>
-              Surface de la maison: ${mai.surfaceMaison}
+              Surface de la maison: non renseigné ${mai.surfaceMaison}
               </li>
               <li>
-              Surface du sol: ${mai.surfaceSol}
+              Surface du sol: non renseigné ${mai.surfaceSol}
               </li>
               </ul>
               
@@ -231,17 +232,20 @@ constructives et architectoniques)
               </li>
               <li>Mémoire de magister « Evaluation de la qualité environnementale dans le secteur sauvegardé. Cas d'études "la casbah d'Alger" », Djamel Merrad, 2012</li>
               </ul>
-              <div class="row">
-              <div class="col">  </div>
-               <div class="col"></div>
-              <div class="col"> 
-               <a href="ModifierMaison?id_mai=${mai.idEltPatri}"  class="btn btn-primary btn-xl"  role="button">Modifier</a>
-                    <a href="SupprimerMaison?id_mai=${mai.idEltPatri}"  class="btn btn-primary btn-xl"  role="button" 
-                onclick="return confirm('Etes vous sùr de vouloir supprimer cette maison?');">Supprimer</a>
-               </div>
-             
-   
-              </div>
+              <c:if test="${!empty sessionScope.prenomNom}"> 
+	              <div class="row">
+	              <div class="col">  </div>
+	               <div class="col"></div>
+	             
+		                  <div class="col"> 
+		               <a href="ModifierMaison?id_mai=${mai.idEltPatri}"  class="btn btn-primary btn-xl"  role="button">Modifier</a>
+		                    <a href="SupprimerMaison?id_mai=${mai.idEltPatri}"  class="btn btn-primary btn-xl"  role="button" 
+		                onclick="return confirm('Etes vous sùr de vouloir supprimer cette maison?');">Supprimer</a>
+		               </div>
+		             
+	   
+	              </div>
+              </c:if>
               </div>
 
            </div>        

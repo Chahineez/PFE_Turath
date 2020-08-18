@@ -67,12 +67,13 @@ public class login extends HttpServlet {
 				System.out.println("ok on verra "+acteur.getPrenom()+" : "+ acteur.isValide());
 			 
 					if(acteur.isValide()) {
-				session.setAttribute(IdSession, acteur); 
+				session.setAttribute("IdSession",IdSession);
+				session.setAttribute("acteur", acteur);
 				prenomNom = acteur.getPrenom()+" "+acteur.getNom();
 				prenom= acteur.getPrenom();
 				session.setAttribute("prenomNom", prenomNom);
 				session.setAttribute("prenom",prenom);
-				response.sendRedirect( request.getContextPath() +
+				response.sendRedirect(request.getContextPath() +
 						"/Accueil" );}
 				else  {
 					System.out.println("nop !valide");

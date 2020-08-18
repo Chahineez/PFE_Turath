@@ -57,10 +57,28 @@
 				    
 				    <label for="etablissement" style="padding-left: 0px;padding-right: 559px;border-right-width: 0px;margin-right: 20px;"><b>Etablissement</b></label>
 				    <input type="text" placeholder="Entrer l'etablissement" name="etablissement" required>
+					<div class="form-group">
+			          <p> Copie du diplôme :  
+				          <input type="file" name="diplome" id="diplome" class="form-control form-control-lg form-control-a" 
+				          placeholder="Uploader l'image ou le fichier pdf de votre diplôme">
+				          </p>
+				      <div class="validation"></div>
+				     
+				    </div>
+				    <div class="form-group">
+			          <p> Copie de la pièce d'identité :  
+				          <input type="file" name="piece_identity" id="piece_identity" class="form-control form-control-lg form-control-a" 
+				          placeholder="Uploader l'image ou le fichier pdf de votre pièce d'identité">
+				          </p>
+				       
+				      <div class="validation"></div>
+				     
+				    </div>
 					<c:if test="${sessionScope.exist== true}"> <font
 				          face="verdana"
 				          color="red"> Compte qui existe déja !</font></c:if>
 				    <button type="submit">S'inscrire</button>
+				     
 				   </div>
 
 				</form> 
