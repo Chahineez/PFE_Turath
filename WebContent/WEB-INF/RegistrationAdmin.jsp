@@ -20,7 +20,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Créer compte Expert</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Créer compte Admin</h3></div>
                                     <div class="card-body">
                                         <form action="RegistrationAdmin" method="post">
                                             <div class="form-row">
@@ -38,9 +38,13 @@
                                                 </div>
                                             </div>
                                              <div class="form-group">
-                                                <label class="small mb-1" for="">Etablissement</label>
-                                                <input class="form-control py-4" id="" name="email" type="text" aria-describedby="emailHelp" placeholder="Entrez votre etablissement" />
-                                            </div>
+									          <p> Copie de la pièce d'identité :  
+										          <input type="file" name="piece_identity" id="piece_identity" class="form-control form-control-lg form-control-a" 
+										          placeholder="Uploader l'image ou le fichier pdf de votre pièce d'identité">
+										          </p>
+										      <div class="validation"></div>
+										     
+										    </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="email">Email</label>
                                                 <input class="form-control py-4" id="email" name="email" type="text" aria-describedby="emailHelp" placeholder="Entrez votre email" />
@@ -54,7 +58,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="onfirmPassword">Confirmer Mot de passe</label>
+                                                        <label class="small mb-1" for="ConfirmPassword">Confirmer Mot de passe</label>
                                                         <input class="form-control py-4" id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="Confirmez votre mot de passe" />
                                                     </div>
                                                 </div>
@@ -71,7 +75,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="AdminLogin">Vous avez déja un compte? Allez vous connecter</a></div>
+                                        <div class="small"><a href="AdminLogin">Vous avez déja un compte? Connectez-vous</a></div>
                                     </div>
                                 </div>
                             </div>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.turath.SDBActorsBean.Admin;
 import com.turath.SDBActorsBean.Architecte;
-import com.turath.SDBActorsDAO.SDBActorsConnection;
+import com.turath.SDBActorsDAO.SDBArchitectConnection;
 import com.turath.SDBActorsDAO.SDBAdminConnection;
 
 /**
@@ -23,7 +23,11 @@ import com.turath.SDBActorsDAO.SDBAdminConnection;
 public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String VUE ="/WEB-INF/AdminLogin.jsp";
-       
+	HttpSession session;
+	String IdSession;
+	String adminLog; 
+	
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,7 +41,15 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
+		session = request.getSession();
+		IdSession = session.getId();
+		if (session.getAttribute("adminLog") == null) {
+			this.getServletContext().getRequestDispatcher(VUE).forward( request, response );}
+		else {
+			response.sendRedirect( request.getContextPath() +
+					"/Dashboard" );}
+			
+		
 	}
 
 	/**
@@ -45,6 +57,8 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		session = request.getSession();
+		IdSession = session.getId();
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		Admin acteur= new Admin(email, password);
@@ -61,11 +75,7 @@ public class AdminLogin extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		HttpSession session;
-		String IdSession;
-		String prenomNom;
-		session = request.getSession();
-		IdSession = session.getId();
+	
 		String prenom;
 		
 		try {
@@ -73,9 +83,9 @@ public class AdminLogin extends HttpServlet {
 			if (SDBAdminConn.verifyAdmin(acteur))  {
 			 
 				session.setAttribute(IdSession, acteur); 
-				prenomNom = acteur.getPrenom()+" "+acteur.getNom();
+				adminLog = acteur.getPrenom()+" "+acteur.getNom();
 				prenom= acteur.getPrenom();
-				session.setAttribute("prenomNom", prenomNom);
+				session.setAttribute("adminLog", adminLog);
 				session.setAttribute("prenom",prenom);
 				System.out.println("valide");
 				response.sendRedirect( request.getContextPath() +
@@ -93,6 +103,7 @@ public class AdminLogin extends HttpServlet {
 		}
 		//SDBActConn.verifLogin(email,password);
 		System.out.println("after verification login");
+		
 		
 	}
 

@@ -9,17 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DashboardExpert
+ * Servlet implementation class LogoutAdmin
  */
-@WebServlet("/DashboardExpert")
-public class DashboardExpert extends HttpServlet {
+@WebServlet("/LogoutAdmin")
+public class LogoutAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/DashboardExpert.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DashboardExpert() {
+    public LogoutAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +28,10 @@ public class DashboardExpert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		System.out.println("nombre des maisons "+session.getAttribute("nbMaisons"));
-		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
-    	
+		 HttpSession session=request.getSession();  
+	        session.invalidate();
+	        request.getRequestDispatcher("AdminLogin").include(request, response);  
+	        
 	}
 
 	/**

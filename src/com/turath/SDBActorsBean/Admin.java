@@ -1,29 +1,34 @@
  package com.turath.SDBActorsBean;
 
+import java.io.File;
+
 public class Admin {
 	private int id;
 	private String mail;
 	private String password;
 	private String nom;
 	private String prenom;
+	private byte[] piece_identity;
 	
 
 
-	public Admin(int id, String mail, String password, String nom, String prenom) {
+	public Admin(int id, String mail, String password, String nom, String prenom, byte[] piece_identity) {
 		super();
 		this.id = id;
 		this.mail = mail;
 		this.password = password;
 		this.nom = nom;
 		this.prenom = prenom;
+		this.piece_identity=piece_identity;
 	}
 	
-	public Admin( String mail, String password, String nom, String prenom) {
+	public Admin( String mail, String password, String nom, String prenom, byte[] piece_identity) {
 		super();
 		this.mail = mail;
 		this.password = password;
 		this.nom = nom;
 		this.prenom = prenom;
+		this.piece_identity=piece_identity;
 
 	}
 	
@@ -70,5 +75,11 @@ public class Admin {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
+	public byte[] getPiece_identity() {
+		return piece_identity;
+	}
+
+	public void setPiece_identity(byte[] piece_identity) {
+		this.piece_identity = piece_identity;
+	}
 }

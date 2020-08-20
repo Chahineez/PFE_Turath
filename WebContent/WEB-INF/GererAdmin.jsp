@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
- 		 <%@include file="headerDashboardAdmin.jsp" %>
+        <%@include file="headerDashboardAdmin.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
@@ -61,41 +61,11 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="row">
-                        <div class="col-lg-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie mr-1"></i>
-                                        Statistiques des comptes d'architectes
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                                   
-                                </div>
-                            </div>
-                           <!--  -- <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area mr-1"></i>
-                                        Area Chart 
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>-->
-                            <div class="col-lg-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Statistiques des comptes d'utilisateurs
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Table d'architectes à activer
+                                Table d'administrateurs
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -105,21 +75,21 @@
                                                 <th>E-mail</th>
                                                 <th>Nom</th>
                                                 <th>Prénom</th>
-                                                <th>Etablissement</th>
-                                                <th>Valider/Refuser</th>
+                                                <th>Pièce d'identity</th>
+                                                <th>Gestion</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <c:forEach var="i" begin="1" end="${sessionScope.listArchi.size()}" step="1">
                                             <tr>
-                                                <td>${sessionScope.listArchi.get(i-1).getMail()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getNom()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getPrenom()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getEtablissement()}</td>
+                                                <td>${sessionScope.listAdmin.get(i-1).getMail()}</td>
+                                                <td>${sessionScope.listAdmin.get(i-1).getNom()}</td>
+                                                <td>${sessionScope.listAdmin.get(i-1).getPrenom()}</td>
+                                                <td>${sessionScope.listAdmin.get(i-1).getPiece_identity()}</td>
                                                <!--  
                                                 <td><button class="button button1" type="submit" value="${sessionScope.listArchi.get(i-1).getMail()}" name="valider">Valider</button>-->
-                                               <td> <a href="Dashboard?val=1&mail=${sessionScope.listArchi.get(i-1).getMail()}" class="button button1"  role="button" >Valider</a>
-                                                <a href="Dashboard?val=0&mail=${sessionScope.listArchi.get(i-1).getMail()}"  class="button button2"  role="button">Refuser</a>
+                                               <td>
+                                                <a   href="GererAdmin?mail=${sessionScope.listArchi.get(i-1).getMail()}" class="button button2"  role="button">Supprimer</a>
                                                 </td>
                                             </tr>
                                            </c:forEach>

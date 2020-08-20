@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.turath.control.Recherche;
 import com.turath.sdb.SDBManipulation;
@@ -32,13 +33,15 @@ public class MaisonsArchitecte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session  = request.getSession();
 		SDBManipulation sdb = new  SDBManipulation();
 		Recherche rech= new Recherche();
 		sdb.connexionASDB();
 		List<com.turath.model.Maison> mais = rech.listeMaisons(sdb.getDataset());	
 		sdb.deconnexionDeSDB();
 		request.setAttribute("mais", mais);
+		session.setAttribute("nbMaisons", mais.size());
+		System.out.println("nombre de maisons "+mais.size());
 
 		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
 	}

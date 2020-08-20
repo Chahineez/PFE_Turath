@@ -11,7 +11,7 @@ import java.sql.Statement;
 import com.turath.SDBActorsBean.Architecte;
 import com.turath.sdb.SDBManipulation;
 
-public class SDBActorsConnection {
+public class SDBArchitectConnection {
 
 	private final String url = "jdbc:postgresql://localhost:5432/NewSDB";
     private final String user = "Turath";

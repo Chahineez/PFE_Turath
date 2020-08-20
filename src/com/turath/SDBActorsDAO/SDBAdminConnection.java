@@ -196,11 +196,11 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
                
         		PreparedStatement pstmt = conn.prepareStatement(SQL,
                 Statement.RETURN_GENERATED_KEYS)) {
-        	 System.out.println("khra");
-        	pstmt.setBoolean(1, true);
-            pstmt.setString(2, mail);
-            pstmt.execute(); 
-            System.out.println("apres execution");}
+        	 
+	        	pstmt.setBoolean(1, true);
+	            pstmt.setString(2, mail);
+	            pstmt.execute(); 
+        											}
         catch (SQLException e) {e.getMessage();}
     	
     }
@@ -208,8 +208,8 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
     public void RefuseArchitecte(Architecte architecte, String mail) {
     	//refuser un compte d'architecte
   	
-        String SQL = "DELETE FROM public.architecte_table\r\n" + 
-        		"	WHERE email= '?';";
+        String SQL = "DELETE FROM public.architecte_table \r\n" + 
+        		"	WHERE email= ?";
 
     
 
@@ -224,5 +224,127 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             System.out.println("apres execution");}
         catch (SQLException e) {e.getMessage();}
     }
+    
+    public List<Architecte> AfficherArchitectes(){
+    	//afficher la liste des architectes créés dans la sdb
+    	String SQL = "SELECT * from public.\"architecte_table\" where valide = ?";
+    	List<Architecte> listArchi = new ArrayList<Architecte> ();
+    	
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+    		preparedStatement.setBoolean(1, true);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	
+            int id = rs.getInt(1);
+            String email= rs.getString(2);
+            String password= rs.getString(3);
+            String nom = rs.getString(4);
+            String prenom = rs.getString(5);
+            String etablissement = rs.getString(6);
+            String piece_identity = rs.getString(7);
+            String diplome = rs.getString(8);
+           
+            Architecte architecte = new Architecte(id,email,password,nom,prenom,etablissement, piece_identity, diplome);
+
+            listArchi.add(architecte);
+            }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(listArchi.isEmpty()) return null;
+  		else return listArchi;
+    	
+    }
+    
+    public void SupprimerArchitecte(Architecte architecte, String mail) {
+  	
+    	 String SQL = "DELETE FROM public.architecte_table\r\n where email= ?";
+
+   
+        try (
+        		
+        	Connection conn = connect();              
+        	PreparedStatement pstmt = conn.prepareStatement(SQL,
+                Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, mail);
+            pstmt.execute(); 
+            System.out.println("apres execution");}
+        catch (SQLException e) {e.getMessage();}
+    }
+    
+    
+    
+    
+    public List<Admin> AfficherAdmins(){
+    	//afficher la liste des architectes créés dans la sdb
+    	String SQL = "SELECT * from public.\"admin_table\" ";
+    	List<Admin> listAdmin = new ArrayList<Admin> ();
+    	
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	
+            int id = rs.getInt(1);
+            String email= rs.getString(2);
+            String password= rs.getString(3);
+            String nom = rs.getString(4);
+            String prenom = rs.getString(5);
+            byte[] piece_identity = null;
+            if (rs != null) {
+                while (rs.next()) {
+                     piece_identity = rs.getBytes(6);
+                    
+                }
+                
+            }
+
+           
+            Admin admin = new Admin(id,email,password,nom,prenom,piece_identity);
+
+            listAdmin.add(admin);
+            }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(listAdmin.isEmpty()) return null;
+  		else return listAdmin;
+    	
+    }
+    
+    
+    
+    public void SupprimerAdmin(Admin admin, String mail) {
+      	
+   	 String SQL = "DELETE FROM public.admin_table\r\n where email= ?";
+
+  
+       try (
+       		
+       	Connection conn = connect();              
+       	PreparedStatement pstmt = conn.prepareStatement(SQL,
+               Statement.RETURN_GENERATED_KEYS)) {
+           pstmt.setString(1, mail);
+           pstmt.execute(); 
+           System.out.println("apres execution");}
+       catch (SQLException e) {e.getMessage();}
+   }
     
 }

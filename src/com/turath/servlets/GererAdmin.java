@@ -13,21 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.turath.SDBActorsBean.Admin;
 import com.turath.SDBActorsBean.Architecte;
 import com.turath.SDBActorsDAO.SDBAdminConnection;
 
 /**
- * Servlet implementation class GererArchitectes
+ * Servlet implementation class GererAdmin
  */
-@WebServlet("/GererArchitectes")
-public class GererArchitectes extends HttpServlet {
+@WebServlet("/GererAdmin")
+public class GererAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/GererArchitectes.jsp";   
-	
+	public static final String VUE ="/WEB-INF/GererAdmin.jsp";  
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GererArchitectes() {
+    public GererAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +39,7 @@ public class GererArchitectes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();		
-		List<Architecte> listArchi=new ArrayList<Architecte>();
+		List<Admin> listAdmin=new ArrayList<Admin>();
 		SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
 		try {
 			Connection con= SDBAdminConn.connect();
@@ -47,17 +48,17 @@ public class GererArchitectes extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		listArchi=SDBAdminConn.AfficherArchitectes();
-		session.setAttribute("listArchi", listArchi);
+		listAdmin=SDBAdminConn.AfficherAdmins();
+		session.setAttribute("listAdmin", listAdmin);
 		
 		//SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
-		Architecte architecte= new Architecte();
+		Admin admin= new Admin();
 		//doGet(request,response);
 		
 		
 		String mail  = request.getParameter("mail");
 			if (mail != null) {
-	        SDBAdminConn.SupprimerArchitecte(architecte,mail);
+	        SDBAdminConn.SupprimerAdmin(admin,mail);
 	        
 			}
 	  

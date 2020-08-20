@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.turath.SDBActorsBean.Admin;
 import com.turath.SDBActorsBean.Architecte;
-import com.turath.SDBActorsDAO.SDBActorsConnection;
+import com.turath.SDBActorsDAO.SDBArchitectConnection;
 import com.turath.SDBActorsDAO.SDBAdminConnection;
 
 /**
@@ -62,7 +62,8 @@ public class RegistrationAdmin extends HttpServlet {
 		String nom=request.getParameter("nom");
 		String prenom=request.getParameter("prenom");
 		String confirm= request.getParameter("ConfirmPassword");
-		Admin admin= new Admin(email, password,nom,prenom);
+		byte[] piece_identity=request.getParameter("piece_identity").getBytes();			
+		Admin admin= new Admin(email, password,nom,prenom,piece_identity);
 		SDBAdminConnection SDBAdminConn = new SDBAdminConnection();
 		int id = 0;
 		

@@ -15,7 +15,7 @@ public class Test {
  
 	public static void main(String[] args) throws SQLException { 
 	// TODO Auto-generated constructor stub
-		SDBActorsConnection SDBActConn = new SDBActorsConnection();
+		SDBArchitectConnection SDBActConn = new SDBArchitectConnection();
 		Connection conx= SDBActConn.connect();
 		System.out.println("after connexion");
 		Architecte actor = new Architecte (1,"ghada@esi.dz","12345","flissi","ghada","epau", false, "piece_identity", "diplome");

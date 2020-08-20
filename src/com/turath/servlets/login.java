@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.turath.SDBActorsBean.Architecte;
-import com.turath.SDBActorsDAO.SDBActorsConnection;
+import com.turath.SDBActorsDAO.SDBArchitectConnection;
 
 /**
  * Servlet implementation class login
@@ -42,7 +42,7 @@ public class login extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		Architecte acteur= new Architecte(email, password);
-		SDBActorsConnection SDBActConn = new SDBActorsConnection();
+		SDBArchitectConnection SDBActConn = new SDBArchitectConnection();
 		acteur.setMail(email);
 		acteur.setPassword(password);
 		//SDBManipulation conx= new SDBManipulation();
@@ -57,7 +57,7 @@ public class login extends HttpServlet {
 
 		HttpSession session;
 		String IdSession;
-		String prenomNom;
+		String architectLog;
 		session = request.getSession();
 		IdSession = session.getId();
 		String prenom;
@@ -69,9 +69,9 @@ public class login extends HttpServlet {
 					if(acteur.isValide()) {
 				session.setAttribute("IdSession",IdSession);
 				session.setAttribute("acteur", acteur);
-				prenomNom = acteur.getPrenom()+" "+acteur.getNom();
+				architectLog = acteur.getPrenom()+" "+acteur.getNom();
 				prenom= acteur.getPrenom();
-				session.setAttribute("prenomNom", prenomNom);
+				session.setAttribute("architectLog", architectLog);
 				session.setAttribute("prenom",prenom);
 				response.sendRedirect(request.getContextPath() +
 						"/Accueil" );}

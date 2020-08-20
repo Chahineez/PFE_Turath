@@ -64,8 +64,9 @@
 
 </div>
 </div>
-	<c:if test="${!empty sessionScope.prenomNom}"> 
-		 <br>
+<!-- || (!empty sessionScope.expertLog) -->
+	<c:if test="${(!empty sessionScope.architecteLog) || (!empty sessionScope.adminLog) }"> 
+	             <br>
 	       <div class="row">
 	              <div class="col">  </div>
 	               <div class="col"></div>

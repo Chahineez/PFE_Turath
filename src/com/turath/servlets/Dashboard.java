@@ -39,48 +39,55 @@ public class Dashboard extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	HttpSession session = request.getSession();		
-		List<Architecte> listArchi=new ArrayList<Architecte>();
-		SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
-		try {
-			Connection con= SDBAdminConn.connect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(SDBAdminConn.AfficherArchitectesNonValides());
-		listArchi=SDBAdminConn.AfficherArchitectesNonValides();
-		session.setAttribute("listArchi", listArchi);
-		
-		//SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
-		Architecte architecte= new Architecte();
-		//doGet(request,response);
-		if (request.getParameter("val") != null) {
-		int val = Integer.valueOf(request.getParameter("val"));
-		String mail  = request.getParameter("mail");
-		System.out.println(val+" "+ mail);
-		System.out.println("haya");
-		if (val== 1) { // Is the valide button pressed?
-	        SDBAdminConn.ValidateArchitecte(architecte,mail);
-	        System.out.println("validé");
-	        //response.sendRedirect( request.getContextPath() +
-				//	"/Dashboard" );
-	    }
-	    if (val ==0) { // Is the reject button pressed?
-	        SDBAdminConn.RefuseArchitecte(architecte,mail);
-	        System.out.println("refusé");
-	        //response.sendRedirect( request.getContextPath() +
-					//"/Dashboard" );
-	    }
-	    }
-		else {
-			System.out.println("val null");}
-		
-	
+    	HttpSession session = request.getSession();	
 		
 		
 		//doPost(request, response);
-    	this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
+		if (session.getAttribute("adminLog") != null) {	
+			List<Architecte> listArchi=new ArrayList<Architecte>();
+			SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
+			try {
+				Connection con= SDBAdminConn.connect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(SDBAdminConn.AfficherArchitectesNonValides());
+			listArchi=SDBAdminConn.AfficherArchitectesNonValides();
+			session.setAttribute("listArchi", listArchi);
+			
+			//SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
+			Architecte architecte= new Architecte();
+			//doGet(request,response);
+			if (request.getParameter("val") != null) {
+			int val = Integer.valueOf(request.getParameter("val"));
+			String mail  = request.getParameter("mail");
+			System.out.println(val+" "+ mail);
+			System.out.println("haya");
+			if (val== 1) { // Is the valide button pressed?
+		        SDBAdminConn.ValidateArchitecte(architecte,mail);
+		        System.out.println("validé");
+		        //response.sendRedirect( request.getContextPath() +
+					//	"/Dashboard" );
+		    }
+		    if (val ==0) { // Is the reject button pressed?
+		        SDBAdminConn.RefuseArchitecte(architecte,mail);
+		        System.out.println("refusé");
+		        //response.sendRedirect( request.getContextPath() +
+						//"/Dashboard" );
+		    }
+		    }
+			else {
+				System.out.println("val null");}
+			
+			
+			this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
+		
+		}
+		else {
+			response.sendRedirect( request.getContextPath() +
+					"/AdminLogin" );
+		}
 	} 
 
 	/**

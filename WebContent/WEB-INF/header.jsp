@@ -60,7 +60,7 @@
           </li>
           
           <li class="nav-item px-lg-4">
-          <c:if test="${!empty sessionScope.prenomNom}"> 
+          <c:if test="${(!empty sessionScope.architecteLog) || (!empty sessionScope.adminLog)}"> 
           <div class="dropdown">
          <!--    <a class="nav-link text-uppercase text-expanded" href="#"> --> <img class=" rounded" src="img/avatar.jpg" alt=""> <h5>${sessionScope.prenom}</h5> <!--  </a>-->
            <div class="dropdown-content">
@@ -69,7 +69,8 @@
 			</div>
 		  </div>
            </c:if>
-           <c:if test="${empty sessionScope.prenomNom}">
+           <!-- && (empty sessionScope.expertLog) -->
+           <c:if test="${(empty sessionScope.architecteLog) && (empty sessionScope.adminLog) }">
             <a class="nav-link text-uppercase text-expanded" href="login">Se connecter</a>
             </c:if>
           </li>

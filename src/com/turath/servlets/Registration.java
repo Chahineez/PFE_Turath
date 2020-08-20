@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.turath.SDBActorsBean.Architecte;
-import com.turath.SDBActorsDAO.SDBActorsConnection;
+import com.turath.SDBActorsDAO.SDBArchitectConnection;
 
 /**
  * Servlet implementation class Registration
@@ -65,7 +65,7 @@ public class Registration extends HttpServlet {
 		String piece_identity=request.getParameter("piece_identity");		
 		String diplome=request.getParameter("diplome");
 		Architecte archi= new Architecte(email, password,nom,prenom,etablissement,false,piece_identity,diplome);
-		SDBActorsConnection SDBActConn = new SDBActorsConnection();
+		SDBArchitectConnection SDBActConn = new SDBArchitectConnection();
 		int id = 0;
 		try {
 			System.out.println("nombre de ID "+ SDBActConn.GeneratorId(archi));
