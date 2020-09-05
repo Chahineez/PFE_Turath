@@ -39,6 +39,8 @@ public class GererArchitectes extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();		
 		List<Architecte> listArchi=new ArrayList<Architecte>();
+		
+		if (session.getAttribute("adminLog") != null) {	
 		SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
 		try {
 			Connection con= SDBAdminConn.connect();
@@ -58,6 +60,8 @@ public class GererArchitectes extends HttpServlet {
 		String mail  = request.getParameter("mail");
 			if (mail != null) {
 	        SDBAdminConn.SupprimerArchitecte(architecte,mail);
+	        response.sendRedirect( request.getContextPath() +
+					"/GererArchitectes" );
 	        
 			}
 	  
@@ -65,7 +69,11 @@ public class GererArchitectes extends HttpServlet {
 		
 		//doPost(request, response);
     	this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
-	
+		}
+		else {
+			response.sendRedirect( request.getContextPath() +
+					"/AdminLogin" );
+		}
 	}
 
 	/**

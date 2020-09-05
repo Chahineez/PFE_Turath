@@ -18,10 +18,10 @@ public class Test {
 		SDBArchitectConnection SDBActConn = new SDBArchitectConnection();
 		Connection conx= SDBActConn.connect();
 		System.out.println("after connexion");
-		Architecte actor = new Architecte (1,"ghada@esi.dz","12345","flissi","ghada","epau", false, "piece_identity", "diplome");
-		SDBActConn.insertArchitecte(actor);
-		Architecte actor2 = new Architecte (2,"ghadaaaa@esi.dz","12345","flissi","ghada","esi", false,  "piece_identity", "diplome");
-		SDBActConn.insertArchitecte(actor2);
+		//Architecte actor = new Architecte (1,"ghada@esi.dz","12345","flissi","ghada","epau", false, "piece_identity", "diplome");
+		//SDBActConn.insertArchitecte(actor);
+		//Architecte actor2 = new Architecte (2,"ghadaaaa@esi.dz","12345","flissi","ghada","esi", false,  "piece_identity", "diplome");
+	//	SDBActConn.insertArchitecte(actor2);
 		/***************Admin***********************/
 		List<Architecte> listArchi=new ArrayList<Architecte>();
 		SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();

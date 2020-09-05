@@ -8,19 +8,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard</title>
+        <title>Image</title>
         <link href="dist/css/styles.css" rel="stylesheet" /> 
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <%@include file="headerDashboardAdmin.jsp" %>
+      
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Tableau de bord</h1>
+                        <h1 class="mt-4">Image de la pièce d'identity</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Tableau de bord</li>
+                            <li class="breadcrumb-item active">Image de la pièce d'identité</li>
                         </ol>
                         <!--  --
                         <div class="row">
@@ -63,44 +63,13 @@
                         </div> -->
                         
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
-                                Table d'architectes à activer
-                            </div>
+                            
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>E-mail</th>
-                                                <th>Nom</th>
-                                                <th>Prénom</th>
-                                                <th>Etablissement</th>
-                                                <th>Pièce d'identité</th>
-                                                <th>Diplôme</th>
-                                                <th>Valider/Refuser</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach var="i" begin="1" end="${sessionScope.listArchi.size()}" step="1">
-                                            <tr>
-                                                <td>${sessionScope.listArchi.get(i-1).getMail()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getNom()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getPrenom()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getEtablissement()}</td>
-                                                <td><a href="imagePieceArchitecte?num=${sessionScope.listArchi.get(i-1).getId()}">Voir</a></td>
-                                                <td><a href="imageDiplomeArchitecte?num=${sessionScope.listArchi.get(i-1).getId()}">Voir</a></td>
-                                               
-                                               <!--  
-                                                <td><button class="button button1" type="submit" value="${sessionScope.listArchi.get(i-1).getMail()}" name="valider">Valider</button>-->
-                                               <td> <a href="DemandesComptes?val=1&mail=${sessionScope.listArchi.get(i-1).getMail()}" class="button button1"  role="button" >Valider</a>
-                                                <a href="DemandesComptes?val=0&mail=${sessionScope.listArchi.get(i-1).getMail()}"  class="button button2"  role="button">Refuser</a>
-                                                </td>
-                                            </tr>
-                                           </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                 picture here
+                                 <img src="${pageContext.request.contextPath}/images/${imagename}">
+                                 
+                                 </div>
                             </div>
                         </div>
                     </div>

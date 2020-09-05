@@ -6,20 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.turath.SDBActorsDAO.SDBArchitectConnection;
+import com.turath.SDBActorsDAO.SDBExpertConnection;
 
 /**
- * Servlet implementation class DashboardExpert
+ * Servlet implementation class imageDiplomeExpert
  */
-@WebServlet("/DashboardExpert")
-public class DashboardExpert extends HttpServlet {
+@WebServlet("/imageDiplomeExpert")
+public class imageDiplomeExpert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/DashboardExpert.jsp";
+	public static final String VUE ="/WEB-INF/imageDiplomeExpert.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DashboardExpert() {
+    public imageDiplomeExpert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +31,14 @@ public class DashboardExpert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		if (session.getAttribute("expertLog") != null) {	
-		
-		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
-		}
-		else {
-			response.sendRedirect( request.getContextPath() +
-					"/ExpertLogin" );
-		}
+		String imageName = "test.png";
+		int id = Integer.parseInt( request.getParameter("num"));
+		SDBExpertConnection SDBExpertConn = new SDBExpertConnection ();
+		response.setContentType(getServletContext().getMimeType(imageName));
+		response.setContentLength(SDBExpertConn.DiplomeFile(id).length);
+		System.out.println("length "+SDBExpertConn.DiplomeFile(id).length);
+        response.getOutputStream().write(SDBExpertConn.DiplomeFile(id));
+        
 	}
 
 	/**

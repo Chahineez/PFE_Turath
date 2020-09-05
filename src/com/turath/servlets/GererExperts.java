@@ -13,22 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.turath.SDBActorsBean.Admin;
 import com.turath.SDBActorsBean.Architecte;
+import com.turath.SDBActorsBean.Expert;
 import com.turath.SDBActorsDAO.SDBAdminConnection;
 
 /**
- * Servlet implementation class GererAdmin
+ * Servlet implementation class GererExperts
  */
-@WebServlet("/GererAdmin")
-public class GererAdmin extends HttpServlet {
+@WebServlet("/GererExperts")
+public class GererExperts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/GererAdmin.jsp";  
+	public static final String VUE ="/WEB-INF/GererExperts.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GererAdmin() {
+    public GererExperts() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,10 +38,8 @@ public class GererAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
 		HttpSession session = request.getSession();		
-		List<Admin> listAdmin=new ArrayList<Admin>();
+		List<Expert> listExpert=new ArrayList<Expert>();
 		
 		if (session.getAttribute("adminLog") != null) {	
 		SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
@@ -51,25 +49,20 @@ public class GererAdmin extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//response.setContentType("application/pdf");
 		
-		String imageName=null;
-		
-		listAdmin=SDBAdminConn.AfficherAdmins();
-
-		session.setAttribute("listAdmin", listAdmin);
-		
+		listExpert=SDBAdminConn.AfficherExperts();
+		session.setAttribute("listExpert", listExpert);
 		
 		//SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
-		Admin admin= new Admin();
+		Expert expert= new Expert();
 		//doGet(request,response);
 		
 		
 		String mail  = request.getParameter("mail");
 			if (mail != null) {
-	        SDBAdminConn.SupprimerAdmin(admin,mail);
+	        SDBAdminConn.SupprimerExpert(expert,mail);
 	        response.sendRedirect( request.getContextPath() +
-					"/GererAdmin" );
+					"/GererExperts" );
 	        
 			}
 	  
@@ -82,7 +75,6 @@ public class GererAdmin extends HttpServlet {
 			response.sendRedirect( request.getContextPath() +
 					"/AdminLogin" );
 		}
-	
 	}
 
 	/**

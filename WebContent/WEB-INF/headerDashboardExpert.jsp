@@ -8,13 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard</title>
+        <title>Dashboard Expert</title>
         <link href="dist/css/styles.css" rel="stylesheet" /> 
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
 <body>
-      <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="Accueil">Aller à Turath</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -33,7 +33,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="LogoutAdmin">Se déconnecter</a>
+                        <a class="dropdown-item" href="LogoutExpert">Se déconnecter</a>
                     </div>
                 </li>
             </ul>
@@ -48,10 +48,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Tableau de bord
                             </a>
-                            <div class="sb-sidenav-menu-heading">Utilisateurs</div>
+                            <div class="sb-sidenav-menu-heading">Elements patrimoniaux</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Comptes Architectes
+                                Demandes d'ajout d'un nouveau élément patrimonial
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -62,24 +62,12 @@
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Comptes Administrateurs
+                                Demandes de modification des éléments patrimoniaux
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="GererAdmin">Gestion de comptes d'administrateurs</a>
-                                  
-                                </nav>
-                              </div>
-                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Comptes Architectes experts
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                	<a class="nav-link" href="DemandesComptesExpert">Demandes de comptes d'expert</a>
-                                    <a class="nav-link" href="GererExperts">Gestion de comptes d'architectes expert</a>
+                                    <a class="nav-link" href="GererArchitectes">Gestion de comptes d'architectes</a>
                                   
                                 </nav>
                             </div>

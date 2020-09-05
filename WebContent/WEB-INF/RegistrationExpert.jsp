@@ -12,7 +12,7 @@
         <link href="dist/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body class="bg-primary2">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -22,7 +22,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Créer compte Expert</h3></div>
                                     <div class="card-body">
-                                        <form action="RegistrationAdmin" method="post">
+                                        <form action="RegistrationExpert" method="post">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -89,7 +89,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="AdminLogin">Vous avez déja un compte? Allez vous connecter</a></div>
+                                        <div class="small"><a href="ExpertLogin">Vous avez déja un compte? Allez vous connecter</a></div>
                                     </div>
                                 </div>
                             </div>

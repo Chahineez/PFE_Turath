@@ -1,16 +1,22 @@
 package com.turath.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+
+import com.google.common.io.ByteStreams;
 import com.turath.SDBActorsBean.Admin;
 import com.turath.SDBActorsBean.Architecte;
 import com.turath.SDBActorsDAO.SDBArchitectConnection;
@@ -20,6 +26,7 @@ import com.turath.SDBActorsDAO.SDBAdminConnection;
  * Servlet implementation class RegistrationAdmin
  */
 @WebServlet("/RegistrationAdmin")
+@MultipartConfig
 public class RegistrationAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String VUE ="/WEB-INF/RegistrationAdmin.jsp";
@@ -62,7 +69,12 @@ public class RegistrationAdmin extends HttpServlet {
 		String nom=request.getParameter("nom");
 		String prenom=request.getParameter("prenom");
 		String confirm= request.getParameter("ConfirmPassword");
-		byte[] piece_identity=request.getParameter("piece_identity").getBytes();			
+		//byte[] piece_identity=request.getParameter("piece_identity").getBytes();			
+		Part filePart = request.getPart("piece_identity"); 
+		InputStream fileContent = filePart.getInputStream();
+		System.out.println("file content "+ fileContent.toString());
+		byte[] piece_identity=  ByteStreams.toByteArray(fileContent);
+		System.out.println("piece  "+ piece_identity);
 		Admin admin= new Admin(email, password,nom,prenom,piece_identity);
 		SDBAdminConnection SDBAdminConn = new SDBAdminConnection();
 		int id = 0;
@@ -80,6 +92,7 @@ public class RegistrationAdmin extends HttpServlet {
 		admin.setPassword(password);
 		admin.setNom(nom);
 		admin.setPrenom(prenom);
+		admin.setPiece_identity(piece_identity);
 			try {
 				Connection conx= SDBAdminConn.connect();
 			} 

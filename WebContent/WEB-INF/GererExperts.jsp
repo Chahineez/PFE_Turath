@@ -65,7 +65,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Table d'architectes à activer
+                                Table d'experts
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -78,23 +78,22 @@
                                                 <th>Etablissement</th>
                                                 <th>Pièce d'identité</th>
                                                 <th>Diplôme</th>
-                                                <th>Valider/Refuser</th>
+                                                <th>Gestion</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="i" begin="1" end="${sessionScope.listArchi.size()}" step="1">
+                                        <c:forEach var="i" begin="1" end="${sessionScope.listExpert.size()}" step="1">
                                             <tr>
-                                                <td>${sessionScope.listArchi.get(i-1).getMail()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getNom()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getPrenom()}</td>
-                                                <td>${sessionScope.listArchi.get(i-1).getEtablissement()}</td>
-                                                <td><a href="imagePieceArchitecte?num=${sessionScope.listArchi.get(i-1).getId()}">Voir</a></td>
-                                                <td><a href="imageDiplomeArchitecte?num=${sessionScope.listArchi.get(i-1).getId()}">Voir</a></td>
-                                               
+                                                <td>${sessionScope.listExpert.get(i-1).getMail()}</td>
+                                                <td>${sessionScope.listExpert.get(i-1).getNom()}</td>
+                                                <td>${sessionScope.listExpert.get(i-1).getPrenom()}</td>
+                                                <td>${sessionScope.listExpert.get(i-1).getEtablissement()}</td>
+                                                <td><a href="imagePieceExpert?num=${sessionScope.listExpert.get(i-1).getId()}">Voir</a></td>
+                                                <td><a href="imageDiplomeExpert?num=${sessionScope.listExpert.get(i-1).getId()}">Voir</a></td>
                                                <!--  
                                                 <td><button class="button button1" type="submit" value="${sessionScope.listArchi.get(i-1).getMail()}" name="valider">Valider</button>-->
-                                               <td> <a href="DemandesComptes?val=1&mail=${sessionScope.listArchi.get(i-1).getMail()}" class="button button1"  role="button" >Valider</a>
-                                                <a href="DemandesComptes?val=0&mail=${sessionScope.listArchi.get(i-1).getMail()}"  class="button button2"  role="button">Refuser</a>
+                                               <td>
+                                                <a   href="GererExperts?mail=${sessionScope.listExpert.get(i-1).getMail()}" class="button button2"  role="button">Supprimer</a>
                                                 </td>
                                             </tr>
                                            </c:forEach>

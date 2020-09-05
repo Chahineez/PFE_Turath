@@ -22,7 +22,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Créer compte Admin</h3></div>
                                     <div class="card-body">
-                                        <form action="RegistrationAdmin" method="post">
+                                        <form action="RegistrationAdmin" method="post" enctype="multipart/form-data">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -33,7 +33,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="nom">Nom</label>
-                                                        <input class="form-control py-4" id="nom" type="text" placeholder="Entrez votre nom" />
+                                                        <input class="form-control py-4" id="nom" name="nom"  type="text" placeholder="Entrez votre nom" />
                                                     </div>
                                                 </div>
                                             </div>

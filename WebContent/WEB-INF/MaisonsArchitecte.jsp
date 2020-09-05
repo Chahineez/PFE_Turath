@@ -64,8 +64,8 @@
 
 </div>
 </div>
-<!-- || (!empty sessionScope.expertLog) -->
-	<c:if test="${(!empty sessionScope.architecteLog) || (!empty sessionScope.adminLog) }"> 
+<!--  -->
+	<c:if test="${(!empty sessionScope.architecteLog) || (!empty sessionScope.adminLog) || (!empty sessionScope.expertLog)}"> 
 	             <br>
 	       <div class="row">
 	              <div class="col">  </div>

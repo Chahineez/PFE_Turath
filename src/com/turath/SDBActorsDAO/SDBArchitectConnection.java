@@ -45,8 +45,8 @@ public class SDBArchitectConnection {
             login.setPrenom(rs.getString(5));
             login.setEtablissement(rs.getString(6));
             login.setValide(rs.getBoolean(7));
-            login.setPiece_identity(rs.getString(8));
-            login.setDiplome(rs.getString(9));
+            login.setPiece_identity(rs.getBytes(8));
+            login.setDiplome(rs.getBytes(9));
 
 
         } catch (SQLException e) {
@@ -84,8 +84,8 @@ public class SDBArchitectConnection {
             pstmt.setString(5, actor.getPrenom());
             pstmt.setString(6, actor.getEtablissement());
             pstmt.setBoolean(7, actor.isValide());
-            pstmt.setString(8, actor.getPiece_identity());
-            pstmt.setString(9, actor.getDiplome());
+            pstmt.setBytes(8, actor.getPiece_identity());
+            pstmt.setBytes(9, actor.getDiplome());
             pstmt.execute();
             System.out.println("done");
           //  int affectedRows = pstmt.executeUpdate();
@@ -145,6 +145,62 @@ public class SDBArchitectConnection {
 
     return count+1;
     }
+    /*******************************************************************/
+    /******** binary file piece d'identite*********/
+    public byte[] PieceFile(int id) {
+    	String SQL = "SELECT * from public.\"architecte_table\" where id = ?";
+    	byte[] piece_identity=null;
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+    		preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	piece_identity = rs.getBytes(8);
+                       }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(piece_identity == null) return null;
+  		else return piece_identity;
+    	
+
     
+   }
+    
+    /******** binary file diplome*********/
+    public byte[] DiplomeFile(int id) {
+    	String SQL = "SELECT * from public.\"architecte_table\" where id = ?";
+    	byte[] diplome=null;
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+    		preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	diplome = rs.getBytes(9);
+                       }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(diplome == null) return null;
+  		else return diplome;
+    	
+
+    }
     
 }

@@ -9,14 +9,14 @@ public class Expert {
 	private String prenom;
 	private String etablissement;
 	private boolean valide;
-	private String piece_identity;
-	private String diplome;
+	private byte[] piece_identity;
+	private byte[] diplome;
 
 
 
 	
 
-	public Expert(int id, String mail, String password, String nom, String prenom, String etablissement, String piece_identity, String diplome) {
+	public Expert(int id, String mail, String password, String nom, String prenom, String etablissement, byte[] piece_identity, byte[] diplome) {
 		super();
 		this.id = id;
 		this.mail = mail;
@@ -29,7 +29,7 @@ public class Expert {
 
 	}
 
-	public Expert(int id, String mail, String password, String nom, String prenom, String etablissement,  boolean valide, String piece_identity, String diplome) {
+	public Expert(int id, String mail, String password, String nom, String prenom, String etablissement,  boolean valide, byte[] piece_identity, byte[]diplome) {
 		super();
 		this.id = id;
 		this.mail = mail;
@@ -42,7 +42,7 @@ public class Expert {
 		this.diplome=diplome;
 	}
 	
-	public Expert( String mail, String password, String nom, String prenom,  String etablissement, boolean valide, String piece_identity, String diplome) {
+	public Expert( String mail, String password, String nom, String prenom,  String etablissement, boolean valide, byte[] piece_identity, byte[] diplome) {
 		super();
 		this.mail = mail;
 		this.password = password;
@@ -111,19 +111,19 @@ public class Expert {
 	public void setValide(boolean valide) {
 		this.valide = valide;
 	}
-	public String getPiece_identity() {
+	public byte[] getPiece_identity() {
 		return piece_identity;
 	}
 
-	public void setPiece_identity(String piece_identity) {
+	public void setPiece_identity(byte[] piece_identity) {
 		this.piece_identity = piece_identity;
 	}
 
-	public String getDiplome() {
+	public byte[] getDiplome() {
 		return diplome;
 	}
 
-	public void setDiplome(String diplome) {
+	public void setDiplome(byte[] diplome) {
 		this.diplome = diplome;
 	}
 

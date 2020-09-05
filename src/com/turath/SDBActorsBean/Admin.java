@@ -1,7 +1,5 @@
  package com.turath.SDBActorsBean;
 
-import java.io.File;
-
 public class Admin {
 	private int id;
 	private String mail;
@@ -9,7 +7,8 @@ public class Admin {
 	private String nom;
 	private String prenom;
 	private byte[] piece_identity;
-	
+
+
 
 
 	public Admin(int id, String mail, String password, String nom, String prenom, byte[] piece_identity) {
@@ -82,4 +81,5 @@ public class Admin {
 	public void setPiece_identity(byte[] piece_identity) {
 		this.piece_identity = piece_identity;
 	}
+
 }

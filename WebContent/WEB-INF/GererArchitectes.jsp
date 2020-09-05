@@ -76,6 +76,8 @@
                                                 <th>Nom</th>
                                                 <th>Prénom</th>
                                                 <th>Etablissement</th>
+                                                <th>Pièce d'identité</th>
+                                                <th>Diplôme</th>
                                                 <th>Gestion</th>
                                             </tr>
                                         </thead>
@@ -86,6 +88,8 @@
                                                 <td>${sessionScope.listArchi.get(i-1).getNom()}</td>
                                                 <td>${sessionScope.listArchi.get(i-1).getPrenom()}</td>
                                                 <td>${sessionScope.listArchi.get(i-1).getEtablissement()}</td>
+                                                <td><a href="imagePieceArchitecte?num=${sessionScope.listArchi.get(i-1).getId()}">Voir</a></td>
+                                                <td><a href="imageDiplomeArchitecte?num=${sessionScope.listArchi.get(i-1).getId()}">Voir</a></td>
                                                <!--  
                                                 <td><button class="button button1" type="submit" value="${sessionScope.listArchi.get(i-1).getMail()}" name="valider">Valider</button>-->
                                                <td>

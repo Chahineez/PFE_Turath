@@ -6,20 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.turath.SDBActorsDAO.SDBAdminConnection;
 
 /**
- * Servlet implementation class DashboardExpert
+ * Servlet implementation class imagePiece
  */
-@WebServlet("/DashboardExpert")
-public class DashboardExpert extends HttpServlet {
+@WebServlet("/imagePieceAdmin")
+public class imagePieceAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/DashboardExpert.jsp";
+	public static final String VUE ="/WEB-INF/imagePieceAdmin.jsp"; 
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DashboardExpert() {
+    public imagePieceAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +30,13 @@ public class DashboardExpert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		if (session.getAttribute("expertLog") != null) {	
-		
-		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
-		}
-		else {
-			response.sendRedirect( request.getContextPath() +
-					"/ExpertLogin" );
-		}
+		String imageName = "test.png";
+		int id = Integer.parseInt( request.getParameter("num"));
+		SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
+		response.setContentType(getServletContext().getMimeType(imageName));
+		response.setContentLength(SDBAdminConn.fileAdmin(id).length);
+		System.out.println("length "+SDBAdminConn.fileAdmin(id).length);
+        response.getOutputStream().write(SDBAdminConn.fileAdmin(id));
 	}
 
 	/**

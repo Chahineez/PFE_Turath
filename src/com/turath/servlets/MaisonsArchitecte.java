@@ -41,7 +41,6 @@ public class MaisonsArchitecte extends HttpServlet {
 		sdb.deconnexionDeSDB();
 		request.setAttribute("mais", mais);
 		session.setAttribute("nbMaisons", mais.size());
-		System.out.println("nombre de maisons "+mais.size());
 
 		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
 	}

@@ -1,6 +1,7 @@
 package com.turath.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+import com.google.common.io.ByteStreams;
 import com.turath.SDBActorsBean.Architecte;
 import com.turath.SDBActorsDAO.SDBArchitectConnection;
 
@@ -35,7 +38,7 @@ public class Registration extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		boolean exist=false;
+
 		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
 	}
 
@@ -62,8 +65,17 @@ public class Registration extends HttpServlet {
 		String nom=request.getParameter("nom");
 		String prenom=request.getParameter("prenom");
 		String etablissement=request.getParameter("etablissement").toString();
-		String piece_identity=request.getParameter("piece_identity");		
-		String diplome=request.getParameter("diplome");
+		
+		Part pieceFile = request.getPart("piece_identity"); 
+		InputStream pFileContent = pieceFile.getInputStream();
+		System.out.println("file content "+ pFileContent.toString());
+		byte[] piece_identity=  ByteStreams.toByteArray(pFileContent);
+		
+		Part diplomeFile = request.getPart("diplome"); 
+		InputStream dFileContent = diplomeFile.getInputStream();
+		System.out.println("file content "+ dFileContent.toString());
+		byte[] diplome=  ByteStreams.toByteArray(dFileContent);
+		
 		Architecte archi= new Architecte(email, password,nom,prenom,etablissement,false,piece_identity,diplome);
 		SDBArchitectConnection SDBActConn = new SDBArchitectConnection();
 		int id = 0;

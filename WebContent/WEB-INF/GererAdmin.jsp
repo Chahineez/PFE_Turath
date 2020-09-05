@@ -80,16 +80,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="i" begin="1" end="${sessionScope.listArchi.size()}" step="1">
+										 <c:forEach var="i" begin="1" end="${sessionScope.listAdmin.size()}" step="1">
                                             <tr>
                                                 <td>${sessionScope.listAdmin.get(i-1).getMail()}</td>
                                                 <td>${sessionScope.listAdmin.get(i-1).getNom()}</td>
                                                 <td>${sessionScope.listAdmin.get(i-1).getPrenom()}</td>
-                                                <td>${sessionScope.listAdmin.get(i-1).getPiece_identity()}</td>
-                                               <!--  
-                                                <td><button class="button button1" type="submit" value="${sessionScope.listArchi.get(i-1).getMail()}" name="valider">Valider</button>-->
-                                               <td>
-                                                <a   href="GererAdmin?mail=${sessionScope.listArchi.get(i-1).getMail()}" class="button button2"  role="button">Supprimer</a>
+                                                <td><a href="imagePieceAdmin?num=${sessionScope.listAdmin.get(i-1).getId()}">Voir</a></td>
+                                         	     <td>
+                                                <a  href="GererAdmin?mail=${sessionScope.listAdmin.get(i-1).getMail()}" class="button button2"  role="button">Supprimer</a>
                                                 </td>
                                             </tr>
                                            </c:forEach>

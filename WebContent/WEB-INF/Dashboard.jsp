@@ -12,6 +12,8 @@
         <link href="dist/css/styles.css" rel="stylesheet" /> 
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    	 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
     </head>
     <body class="sb-nav-fixed">
  		 <%@include file="headerDashboardAdmin.jsp" %>
@@ -68,7 +70,10 @@
                                         <i class="fas fa-chart-pie mr-1"></i>
                                         Statistiques des comptes d'architectes
                                     </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                    <div id="data"></div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50">
+                                    
+                                    </canvas></div>
                                    
                                 </div>
                             </div>
@@ -153,6 +158,7 @@
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="dist/assets/demo/datatables-demo.js"></script>
-          <script src="dist/assets/demo/chart-pie-demo.js"></script>
+        <script src="dist/assets/demo/chart-pie-demo.js"></script>
+
     </body>
 </html>

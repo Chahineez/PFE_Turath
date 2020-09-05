@@ -6,11 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import com.turath.SDBActorsBean.Admin;
 import com.turath.SDBActorsBean.Architecte;
+import com.turath.SDBActorsBean.Expert;
 import com.turath.sdb.SDBManipulation;
 
 public class SDBAdminConnection {
@@ -43,14 +49,17 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             status = rs.next();
+            
             login.setNom(rs.getString(4));
             login.setPrenom(rs.getString(5));
-
+            
+            
 
         } catch (SQLException e) {
             // process sql exception
         	System.out.println(e.getMessage());
         }
+        
         return status;
     }
 
@@ -65,8 +74,8 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
 		}
     	
         String SQL = "INSERT INTO public.\"admin_table\"(\r\n" + 
-        		"	id, email, password, nom, prenom)\r\n" + 
-        		"	VALUES (?, ?, ?, ?, ?)";
+        		"	id, email, password, nom, prenom, piece_identity)\r\n" + 
+        		"	VALUES (?, ?, ?, ?, ?, ?)";
 
     
 
@@ -80,6 +89,7 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             pstmt.setString(3, actor.getPassword());
             pstmt.setString(4, actor.getNom());
             pstmt.setString(5, actor.getPrenom());
+            pstmt.setBytes(6, actor.getPiece_identity());
             pstmt.execute();
             System.out.println("done");
           //  int affectedRows = pstmt.executeUpdate();
@@ -162,9 +172,11 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             String nom = rs.getString(4);
             String prenom = rs.getString(5);
             String etablissement = rs.getString(6);
-            String piece_identity = rs.getString(7);
-            String diplome = rs.getString(8);
+            byte[] piece_identity = rs.getBytes(7);
+            byte[] diplome = rs.getBytes(8);
            
+            
+            
             Architecte architecte = new Architecte(id,email,password,nom,prenom,etablissement, piece_identity, diplome);
 
             listArchi.add(architecte);
@@ -247,8 +259,8 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             String nom = rs.getString(4);
             String prenom = rs.getString(5);
             String etablissement = rs.getString(6);
-            String piece_identity = rs.getString(7);
-            String diplome = rs.getString(8);
+            byte[] piece_identity = rs.getBytes(7);
+            byte[] diplome = rs.getBytes(8);
            
             Architecte architecte = new Architecte(id,email,password,nom,prenom,etablissement, piece_identity, diplome);
 
@@ -284,9 +296,9 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
     
     
     
-    public List<Admin> AfficherAdmins(){
+    public List<Admin> AfficherAdmins() throws IOException{
     	//afficher la liste des architectes créés dans la sdb
-    	String SQL = "SELECT * from public.\"admin_table\" ";
+    	String SQL = "SELECT * from public.admin_table";
     	List<Admin> listAdmin = new ArrayList<Admin> ();
     	
     	try (
@@ -304,18 +316,29 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             String password= rs.getString(3);
             String nom = rs.getString(4);
             String prenom = rs.getString(5);
-            byte[] piece_identity = null;
-            if (rs != null) {
-                while (rs.next()) {
-                     piece_identity = rs.getBytes(6);
-                    
-                }
-                
+            System.out.println("before piece identity");
+            byte[] piece_identity = rs.getBytes("piece_identity");
+            /*Blob blob = rs.getBlob(6);
+           // System.out.println(blob.toString());
+           // InputStream inputStream = blob.getBinaryStream(); //blob.getBinaryStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+             
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
             }
-
-           
+             
+            byte[] imageBytes = outputStream.toByteArray();
+             
+         //   String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+           String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            inputStream.close();
+            outputStream.close();*/
+            
             Admin admin = new Admin(id,email,password,nom,prenom,piece_identity);
-
+            
+          //  admin.setBase64Image(base64Image);
             listAdmin.add(admin);
             }
            
@@ -346,5 +369,178 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
            System.out.println("apres execution");}
        catch (SQLException e) {e.getMessage();}
    }
+    
+    /******** binary file*********/
+    public byte[] fileAdmin(int id) {
+    	String SQL = "SELECT * from public.\"admin_table\" where id = ?";
+    	byte[] piece_identity=null;
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+    		preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	piece_identity = rs.getBytes(6);
+                       }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(piece_identity == null) return null;
+  		else return piece_identity;
+    	
+
+    }
+    
+    
+    /******************************************************/
+    public List<Expert> AfficherExperts(){
+    	//afficher la liste des architectes créés dans la sdb
+    	String SQL = "SELECT * from public.\"expert_table\" where valide = ?";
+    	List<Expert> listExpert = new ArrayList<Expert> ();
+    	
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+    		preparedStatement.setBoolean(1, true);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	
+            int id = rs.getInt(1);
+            String email= rs.getString(2);
+            String password= rs.getString(3);
+            String nom = rs.getString(4);
+            String prenom = rs.getString(5);
+            String etablissement = rs.getString(6);
+            byte[] piece_identity = rs.getBytes(7);
+            byte[] diplome = rs.getBytes(8);
+           
+            Expert expert = new Expert(id,email,password,nom,prenom,etablissement, piece_identity, diplome);
+
+            listExpert.add(expert);
+            }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(listExpert.isEmpty()) return null;
+  		else return listExpert;
+    	
+    }
+    
+    public void SupprimerExpert(Expert expert, String mail) {
+  	
+    	 String SQL = "DELETE FROM public.expert_table\r\n where email= ?";
+
+   
+        try (
+        		
+        	Connection conn = connect();              
+        	PreparedStatement pstmt = conn.prepareStatement(SQL,
+                Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, mail);
+            pstmt.execute(); 
+            System.out.println("apres execution");}
+        catch (SQLException e) {e.getMessage();}
+    }
+    
+    public List<Expert> AfficherExpertNonValides(){
+    	//afficher la liste des architectes créés dans la sdb
+    	String SQL = "SELECT * from public.\"expert_table\" where valide = ?";
+    	List<Expert> listExpert = new ArrayList<Expert> ();
+    	
+    	try (
+    		
+    		Connection conx = connect();
+    		
+            PreparedStatement preparedStatement = conx
+            .prepareStatement(SQL)) {
+    		preparedStatement.setBoolean(1, false);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()) {
+            	
+            int id = rs.getInt(1);
+            String email= rs.getString(2);
+            String password= rs.getString(3);
+            String nom = rs.getString(4);
+            String prenom = rs.getString(5);
+            String etablissement = rs.getString(6);
+            byte[] piece_identity = rs.getBytes(7);
+            byte[] diplome = rs.getBytes(8);
+           
+            
+            
+            Expert expert = new Expert(id,email,password,nom,prenom,etablissement, piece_identity, diplome);
+
+            listExpert.add(expert);
+            }
+           
+            
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+    	if(listExpert.isEmpty()) return null;
+  		else return listExpert;
+    	
+    }
+    public void ValidateExpert(Expert expert, String mail) {
+    	//valider un compte d'architecte
+    	
+    	
+        String SQL = "UPDATE public.expert_table \r\n" + 
+        		"	SET valide = ?\r\n" + 
+        		"	WHERE email = ?";
+
+    
+
+        try (
+        		
+        		Connection conn = connect();
+               
+        		PreparedStatement pstmt = conn.prepareStatement(SQL,
+                Statement.RETURN_GENERATED_KEYS)) {
+        	 
+	        	pstmt.setBoolean(1, true);
+	            pstmt.setString(2, mail);
+	            pstmt.execute(); 
+        											}
+        catch (SQLException e) {e.getMessage();}
+    	
+    }
+        
+    public void RefuseExpert(Expert expert, String mail) {
+    	//refuser un compte d'architecte
+  	
+        String SQL = "DELETE FROM public.expert_table \r\n" + 
+        		"	WHERE email= ?";
+
+    
+
+        try (
+        		
+        		Connection conn = connect();
+               
+        		PreparedStatement pstmt = conn.prepareStatement(SQL,
+                Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, mail);
+            pstmt.execute(); 
+            System.out.println("apres execution");}
+        catch (SQLException e) {e.getMessage();}
+    }
+    
     
 }

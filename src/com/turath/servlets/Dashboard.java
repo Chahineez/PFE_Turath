@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.turath.SDBActorsBean.Architecte;
 import com.turath.SDBActorsDAO.SDBAdminConnection;
+import com.turath.control.Recherche;
 
 /**
  * Servlet implementation class Dashboard
@@ -39,8 +40,13 @@ public class Dashboard extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
+    	Recherche Rech = new Recherche();
     	HttpSession session = request.getSession();	
-		
+    	int nbMaisons = Rech.nbMaisons();
+    	String data = "hello";
+    	response.setContentType("text/plain");
+    	response.setCharacterEncoding("UTF-8");
+    	response.getWriter().write(data);
 		
 		//doPost(request, response);
 		if (session.getAttribute("adminLog") != null) {	

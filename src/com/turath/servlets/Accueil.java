@@ -28,7 +28,9 @@ public class Accueil extends HttpServlet {
 	public static final String VUE ="/WEB-INF/Accueil.jsp";
        
     /**
+     * 
      * @see HttpServlet#HttpServlet()
+     * 
      */
     public Accueil() {
         super();

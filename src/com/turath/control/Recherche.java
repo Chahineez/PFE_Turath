@@ -69,6 +69,10 @@ public class Recherche {
 				 } 
 				 finally {}
 		 }
+	 /****************récupération du nombre de maisons****************/
+	 public int nbMaisons() {
+		 return 5;
+	 }
 	 
 	 /****************************Recherche Maison par Id******************/
 	 public Maison rechMaisonParId (Dataset dataset, int idMaison)

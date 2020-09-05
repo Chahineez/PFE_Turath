@@ -232,8 +232,8 @@ constructives et architectoniques)
               </li>
               <li>Mémoire de magister « Evaluation de la qualité environnementale dans le secteur sauvegardé. Cas d'études "la casbah d'Alger" », Djamel Merrad, 2012</li>
               </ul>
-              <!-- || (!empty sessionScope.expertLog) -->
-              <c:if test="${(!empty sessionScope.architecteLog) || (!empty sessionScope.adminLog) }"> 
+              <!--  -->
+              <c:if test="${(!empty sessionScope.architecteLog) || (!empty sessionScope.adminLog) || (!empty sessionScope.expertLog) }"> 
 	              <div class="row">
 	              <div class="col">  </div>
 	               <div class="col"></div>
