@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.turath.control.Recherche;
+import com.turath.sdb.SDBManipulation;
 
 /**
  * Servlet implementation class StatisticsEltPatri
@@ -28,7 +32,28 @@ public class StatisticsEltPatri extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
+		SDBManipulation sdb = new  SDBManipulation();
+		Recherche rech= new Recherche();
+		sdb.connexionASDB();
+		int nbMaisons= rech.nbMaisons(sdb.getDataset());
+		int nbMonuments= rech.nbMonuments(sdb.getDataset());
+		int nbSites= rech.nbSites(sdb.getDataset());
+		int nbEspaces= rech.nbEspaces(sdb.getDataset());
+		//doPost(request, response);
+    	HttpSession session = request.getSession();	
+    	
+    	session.setAttribute("nbMaisons", nbMaisons);
+    	session.setAttribute("nbMonuments", nbMonuments);
+    	session.setAttribute("nbSites", nbSites);
+    	session.setAttribute("nbEspaces", nbEspaces);
+    	if (session.getAttribute("adminLog") != null) {	
+    		
+    		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
+    		}
+    		else {
+    			response.sendRedirect( request.getContextPath() +
+    					"/AdminLogin" );
+    		}
 	}
 
 	/**

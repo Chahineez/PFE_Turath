@@ -107,7 +107,7 @@
                                         </nav>
                                     </div>-->
                                       
-                                <a class="nav-link" href="StatisticsComptes"> Statistiques des éléments patrimoniaux
+                                <a class="nav-link" href="StatisticsEltPatri"> Statistiques des éléments patrimoniaux
                                         </a>
                                        <!--   <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>

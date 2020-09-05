@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
 <body>
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark2">
             <a class="navbar-brand" href="Accueil">Aller à Turath</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -40,11 +40,11 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-dark2" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="Dashboard">
+                            <a class="sb-sidenav-menu nav-link" href="DashboardExpert">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Tableau de bord
                             </a>
@@ -56,8 +56,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="DemandesComptes">Demandes de comptes d'architectes</a>
-                                    <a class="nav-link" href="GererArchitectes">Gestion de comptes d'architectes</a>
+                                    <a class="nav-link" href="DemandesAjoutElt"> Demandes d'ajout d'un nouveau élément patrimonial</a>
+                                  
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -67,7 +67,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="GererArchitectes">Gestion de comptes d'architectes</a>
+                                    <a class="nav-link" href="GererElt">Demandes de modification des éléments patrimoniaux</a>
                                   
                                 </nav>
                             </div>
@@ -83,29 +83,11 @@
                                     <a class="nav-link collapsed" href="StatisticsComptes" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                    -->
                                 <nav class="sb-sidenav-menu-nested nav">  
-                                <a class="nav-link" href="StatisticsComptes">    Statistiques des comptes d'architectes
-                                   </a>
-                                   <!--       <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>-->
+              
+
                                       
-                                <a class="nav-link" href="StatisticsComptes"> Statistiques des éléments patrimoniaux
-                                        </a>
-                                       <!--   <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div> -->
+                                <a class="nav-link" href="StatisticsEltsPatri"> Statistiques des éléments patrimoniaux
+                                  </a>      
                                 </nav>
                             </div>
                          <!--    <div class="sb-sidenav-menu-heading">Addons</div>

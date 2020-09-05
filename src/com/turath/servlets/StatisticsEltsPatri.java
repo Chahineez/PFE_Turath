@@ -1,8 +1,6 @@
 package com.turath.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,22 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.turath.SDBActorsDAO.SDBAdminConnection;
 import com.turath.control.Recherche;
 import com.turath.sdb.SDBManipulation;
 
 /**
- * Servlet implementation class StatisticsComptes
+ * Servlet implementation class StatisticsEltsPatri
  */
-@WebServlet("/StatisticsComptes")
-public class StatisticsComptes extends HttpServlet {
+@WebServlet("/StatisticsEltsPatri")
+public class StatisticsEltsPatri extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE ="/WEB-INF/StatisticsComptes.jsp";
-       
+	public static final String VUE ="/WEB-INF/StatisticsEltsPatri.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StatisticsComptes() {
+    public StatisticsEltsPatri() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,46 +31,27 @@ public class StatisticsComptes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SDBAdminConnection sdbAdmin = new SDBAdminConnection();
-
-		int nbArchitectes=0;
-		try {
-			nbArchitectes = sdbAdmin.nbArchitectes();
-			System.out.println("architectes "+ nbArchitectes);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int nbAdmins=0;
-		try {
-			nbAdmins = sdbAdmin.nbAdmins();
-			System.out.println("admins "+ nbAdmins);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int nbExperts=0;
-		try {
-			nbExperts = sdbAdmin.nbExperts();
-			System.out.println("Experts "+ nbExperts);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		SDBManipulation sdb = new  SDBManipulation();
+		Recherche rech= new Recherche();
+		sdb.connexionASDB();
+		int nbMaisons= rech.nbMaisons(sdb.getDataset());
+		int nbMonuments= rech.nbMonuments(sdb.getDataset());
+		int nbSites= rech.nbSites(sdb.getDataset());
+		int nbEspaces= rech.nbEspaces(sdb.getDataset());
 		//doPost(request, response);
     	HttpSession session = request.getSession();	
     	
-    	session.setAttribute("nbAdmins", nbAdmins);
-    	session.setAttribute("nbExperts", nbExperts);
-    	session.setAttribute("nbArchitectes", nbArchitectes);
-    	if (session.getAttribute("adminLog") != null) {	
+    	session.setAttribute("nbMaisons", nbMaisons);
+    	session.setAttribute("nbMonuments", nbMonuments);
+    	session.setAttribute("nbSites", nbSites);
+    	session.setAttribute("nbEspaces", nbEspaces);
+    	if (session.getAttribute("expertLog") != null) {	
     		
     		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
     		}
     		else {
     			response.sendRedirect( request.getContextPath() +
-    					"/AdminLogin" );
+    					"/ExpertLogin" );
     		}
 	}
 

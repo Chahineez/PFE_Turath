@@ -69,10 +69,7 @@ public class Recherche {
 				 } 
 				 finally {}
 		 }
-	 /****************récupération du nombre de maisons****************/
-	 public int nbMaisons() {
-		 return 5;
-	 }
+
 	 
 	 /****************************Recherche Maison par Id******************/
 	 public Maison rechMaisonParId (Dataset dataset, int idMaison)
@@ -1160,5 +1157,33 @@ return images;
 	catch(Exception e) { e.printStackTrace();}
 		return  eltArchi;
 	}
+	
+	
+	 /****************récupération du nombre de maisons, sites, monuments et espaces****************/
+	 public int nbMaisons(Dataset dataset) {
+		 		int count = 0;
+				count=listeMaisons(dataset).size();
+				return count;
+					
+			 }
+	 public int nbMonuments(Dataset dataset) {
+	 		int count = 0;
+			count=listeMonuments(dataset).size();
+			return count;
+				
+		 }
+	 public int nbSites(Dataset dataset) {
+	 		int count = 0;
+			count=listeSites(dataset).size();
+			return count;
+				
+		 }
+	 public int nbEspaces(Dataset dataset) {
+	 		int count = 0;
+			count=listeEspaces(dataset).size();
+			return count;
+				
+		 }
+
 
 }

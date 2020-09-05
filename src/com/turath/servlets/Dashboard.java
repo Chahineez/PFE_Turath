@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.turath.SDBActorsBean.Architecte;
 import com.turath.SDBActorsDAO.SDBAdminConnection;
 import com.turath.control.Recherche;
+import com.turath.sdb.SDBManipulation;
 
 /**
  * Servlet implementation class Dashboard
@@ -39,17 +40,24 @@ public class Dashboard extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	Recherche Rech = new Recherche();
-    	HttpSession session = request.getSession();	
-    	int nbMaisons = Rech.nbMaisons();
-    	String data = "hello";
-    	response.setContentType("text/plain");
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(data);
+
+    	SDBManipulation sdb = new  SDBManipulation();
+		Recherche rech= new Recherche();
+		sdb.connexionASDB();
+		int nbMaisons= rech.nbMaisons(sdb.getDataset());
+		int nbMonuments= rech.nbMonuments(sdb.getDataset());
+		int nbSites= rech.nbSites(sdb.getDataset());
+		int nbEspaces= rech.nbEspaces(sdb.getDataset());
 		
 		//doPost(request, response);
-		if (session.getAttribute("adminLog") != null) {	
+    	HttpSession session = request.getSession();	
+    	
+    	session.setAttribute("nbMaisons", nbMaisons);
+    	session.setAttribute("nbMonuments", nbMonuments);
+    	session.setAttribute("nbSites", nbSites);
+    	session.setAttribute("nbEspaces", nbEspaces);
+    	
+    	if (session.getAttribute("adminLog") != null) {	
 			List<Architecte> listArchi=new ArrayList<Architecte>();
 			SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
 			try {

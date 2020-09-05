@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <%@include file="headerDashboardAdmin.jsp" %>
+        <%@include file="headerDashboardExpert.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
@@ -22,21 +22,22 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Tableau de bord</li>
                         </ol>
-                        
+
                         <div class="row">
-                            
+                           
                             <div class="col-lg-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-pie mr-1"></i>
-                                        Statistiques des comptes d'utilisateurs
+                                      Statistiques des éléments patrimoniaux
                                     </div>
-                                    <input type="hidden" name="nbArchitectes" id="nbArchitectes" value="${sessionScope.nbArchitectes}" />
-          							<input type="hidden" name="nbExperts" id="nbExperts" value="${sessionScope.nbExperts}" />
-          							<input type="hidden" name="nbAdmins" id="nbAdmins" value="${sessionScope.nbAdmins}" />
+                                    <input type="hidden" name="nbMaisons" id="nbMaisons" value="${sessionScope.nbMaisons}" />
+          							<input type="hidden" name="nbMonuments" id="nbMonuments" value="${sessionScope.nbMonuments}" />
+          							<input type="hidden" name="nbSites" id="nbSites" value="${sessionScope.nbSites}" />
+          							<input type="hidden" name="nbEspaces" id="nbEspaces" value="${sessionScope.nbEspaces}" />
                                     
-                                    <div class="card-body"><canvas id="myPieChartActors" width="100%" height="50"></canvas></div>
-                                    
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+
                                 </div>
                             </div>
                         </div>
@@ -45,12 +46,8 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted">Copyright &copy; Turath 2020</div>
+                            
                         </div>
                     </div>
                 </footer>
@@ -62,6 +59,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="dist/assets/demo/chart-area-demo.js"></script>
         <script src="dist/assets/demo/chart-bar-demo.js"></script>
-        <script src="dist/assets/demo/chart-pie-demo-actors.js"></script>
+        <script src="dist/assets/demo/chart-pie-demo.js"></script>
     </body>
 </html>

@@ -541,6 +541,32 @@ public boolean verifyAdmin(Admin login) throws ClassNotFoundException {
             System.out.println("apres execution");}
         catch (SQLException e) {e.getMessage();}
     }
-    
+    /**
+     * @throws SQLException *******************************/
+    public int nbArchitectes() throws SQLException {
+    	int count=0;
+    	SDBAdminConnection sdbAdmin= new SDBAdminConnection();
+    	count = sdbAdmin.AfficherArchitectes().size();
+    	return count;
+    }
+    public int nbExperts() throws SQLException {
+    	int count=0;
+    	Connection conn = connect();
+    	SDBAdminConnection sdbAdmin= new SDBAdminConnection();
+    	count = sdbAdmin.AfficherExperts().size();
+    	return count;
+    }
+    public int nbAdmins() throws SQLException {
+    	int count=0;
+    	Connection conn = connect();
+    	SDBAdminConnection sdbAdmin= new SDBAdminConnection();
+    	try {
+			count = sdbAdmin.AfficherAdmins().size();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return count;
+    }
     
 }

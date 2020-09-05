@@ -23,7 +23,7 @@ public class SDBManipulation {
 	
 	private Dataset dataset;
 	private Store store;
-	private String OWL_FILE = "C:\\Users\\monPC\\Documents\\patriArchi.owl"; 
+	private String OWL_FILE = "C:\\Users\\monPC\\Documents\\ontologie\\patriArchi.owl"; 
 	private String DB_URL = "jdbc:postgresql://localhost:5432/NewSDB"; 
 	private String DB_USER = "Turath";                         
 	private String DB_PASSWD = "Turath";
