@@ -7,10 +7,10 @@ public class Site extends EltPatri{
 	
 	public Site(int idEltPatri,String descEltPatri,float altitude,
 			float longitude, String dateConstruction,String périodeConstruction, String surfaceSite, 
-			List<String> appels, List<String> images)
+			List<String> appels, List<String> images, int valide, int supprime)
 	{
 		super(idEltPatri,descEltPatri,altitude,longitude,
-				dateConstruction,périodeConstruction,appels,images);
+				dateConstruction,périodeConstruction,appels,images, valide, supprime);
 		this.surfaceSite= surfaceSite;
 	
 	}

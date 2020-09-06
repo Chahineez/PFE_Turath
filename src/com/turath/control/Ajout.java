@@ -1,6 +1,7 @@
 package com.turath.control;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.jena.query.Dataset;
 import org.apache.jena.update.UpdateExecutionFactory;
@@ -312,13 +313,157 @@ public class Ajout {
 	
 
 
-	/********Ajouter appellation type Maison****/
-	/********Ajouter un type de Maisons********/
-	/********Ajouter relation entre type maison et maison**********/
+	/********Ajouter appellation à une maison*********/
 	
-	/********Ajouter une maison**************/
+	public boolean add_appel_maison (String appel, String sourceAppel, Dataset dataset, int idMaison)
+	{
+		
+		String addAppel="prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+		             +"prefix rdfs:	  <http://www.w3.org/2000/01/rdf-schema#>"
+				     +"prefix mysdb:  <http://www.w3.org/ontologies/patriArchi#> "
+	    +"INSERT DATA"
+		+"{ graph <http://www.w3.org/ontologies/patriArchi> {"
+		+" mysdb:AppellationEP"+idMaison+" mysdb:idAppelEP "+idMaison+";"
+		+"				 mysdb:appelEP\""+appel+"\";"
+		+"               rdfs:appelEP \""+sourceAppel+"\"."
+		+" mysdb:AppellationEP"+idMaison+" mysdb:Appele mysdb:Maison"+idMaison+"."
+	    +" mysdb:Maison"+idMaison+" mysdb:SappelerEP mysdb:AppellationEP"+idMaison+"."
+		+" mysdb:AppellationEP"+idMaison+" rdf:type mysdb:AppellationEP."
+		+" mysdb:AppellationEP a rdfs:Class."
+		+ "}"
+		+"}";		
+		try {		  
+        	 UpdateRequest update  = UpdateFactory.create(addAppel);
+		     UpdateProcessor qexec = UpdateExecutionFactory.create(update, dataset);
+		     qexec.execute();
+		    }
+	    catch(Exception e){ 
+	    	 System.out.println(e.getMessage());
+	    	 return false;}
+		     return true;		
+	}
+	
+	/********Ajouter une image à une maison*********/
+	/*public boolean add_image_maison (Image  image, Dataset dataset, int idMaison)
+	{
+		int idImage = image.getIdImage();
+		String img = image.getImage();
+		String legende = image.getLegende();
+		
+		String addImage="prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+		             +"prefix rdfs:	  <http://www.w3.org/2000/01/rdf-schema#>"
+				     +"prefix mysdb:  <http://www.w3.org/ontologies/patriArchi#> "
+	    +"INSERT DATA"
+		+"{ graph <http://www.w3.org/ontologies/patriArchi> {"
+		+" mysdb:Image"+idImage+" mysdb:idIllustration "+idImage+";"
+		+"				 mysdb:illustration \""+img+"\";"
+		+"               mysdb:legende \""+legende+"\"."
+		+" mysdb:Image"+idImage+" mysdb:IllustrerEA mysdb:EltArchi"+idEltArchi+"."
+	    +" mysdb:EltArchi"+idEltArchi+" mysdb:IllustreParEA mysdb:Image"+idImage+"."
+		+" mysdb:Image"+idImage+" rdf:type mysdb:Illustration."
+		+" mysdb:Illustration a rdfs:Class."
+		+ "}"
+		+"}";		
+		try {		  
+        	 UpdateRequest update  = UpdateFactory.create(addImage);
+		     UpdateProcessor qexec = UpdateExecutionFactory.create(update, dataset);
+		     qexec.execute();
+		    }
+	    catch(Exception e){ 
+	    	 System.out.println(e.getMessage());
+	    	 return false;}
+		     return true;		
+	}*/
+	
+	/********AJOUTER UNE MAISON**************/
+	public boolean add_maison_sdb( MaisonGestion  maison, Dataset dataset)
+	{
+		                      /*******Récup données maison*******/
+        int idMaison = maison.getIdEltPatri();
+        String descMaison =maison.getDescEltPatri();
+        String sourceDesc =maison.getSourcedesc();
+        
+        String altitudeMaison = Float.toString(maison.getAltitude());
+        String longitudeMaison = Float.toString(maison.getLongitude());
+        String sourceAltLong = maison.getSourcealtlong();
+        
+        String dateConstructionMaison = maison.getDateConstruction();
+        String périodeConstructionMaison= maison.getPériodeConstruction();
+        String sourceDatePériode = maison.getSourceDatePériode();
+        
+        String surfaceSol =maison.getSurfaceSol();
+        String surfaceMaison= maison.getSurfaceMaison();
+        String sourceSurface= maison.getSourceSurface();
+        
+        int valideMaison = maison.getValide();
+        int supprimeMaison =maison.getSupprime();
+        
+        Map<String, String> appelsMaison =maison.getAppels();
+        Map<String, String> imagesMaison =maison.getImages();
+        
+	                             /***********Requete************/
+		String addMaison="prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+	             +"prefix rdfs:	  <http://www.w3.org/2000/01/rdf-schema#>"
+			     +"prefix mysdb:  <http://www.w3.org/ontologies/patriArchi#> "
+			     +"INSERT DATA"
+			     +"{ graph <http://www.w3.org/ontologies/patriArchi>{"
+			     +" mysdb:Maison"+idMaison+" mysdb:idEltPatri "+idMaison+";"
+			     +"				               mysdb:descEltPatri \""+descMaison+"\";"
+	             +"                            rdfs:descEltPatri \""+sourceDesc+"\";"
+	             
+	             +"				               mysdb:altitude\""+altitudeMaison+"\";"
+	             +"				               mysdb:longitude\""+longitudeMaison+"\";"
+	             +"				               rdfs:altitude\""+sourceAltLong+"\";"
+	             +"				               rdfs:longitude\""+sourceAltLong+"\";"
+	             
+	             +"				               mysdb:dateConstruction\""+dateConstructionMaison+"\";"
+	             +"				               mysdb:périodeConstruction\""+périodeConstructionMaison+"\";"
+	             +"				               rdfs:dateConstruction\""+sourceDatePériode+"\";"
+	             +"				               rdfs:périodeConstruction\""+sourceDatePériode+"\";"
+	             
+  				 +"				               mysdb:surfaceSol\""+surfaceSol+"\";"
+	             +"				               mysdb:surfaceMaison\""+surfaceMaison+"\";"
+	             +"				               rdfs:surfaceSol\""+sourceSurface+"\";"
+	             +"				               rdfs:surfaceMaison\""+sourceSurface+"\";"
+	            
+	             +"				               mysdb:valide\""+valideMaison+"\";"
+	             +"				               mysdb:supprime\""+supprimeMaison+"\"."
+	             
+			     +" mysdb:Maison"+idMaison+" rdf:type mysdb:Maison."
+			     +" mysdb:Maison a rdfs:Class."
+			     + "}"
+			     +"}";
+		
+		boolean continu = true;
+		try {		  
+       	 UpdateRequest update  = UpdateFactory.create(addMaison);
+		 UpdateProcessor qexec = UpdateExecutionFactory.create(update, dataset);
+		 qexec.execute();
+		    }
+	    catch(Exception e){ 
+	    	 System.out.println(e.getMessage());
+	    	 continu = false;
+	    }
+		
+		if (continu ==true) 
+    	{
+			 Map.Entry<String,String> entryAppels = appelsMaison.entrySet().iterator().next();
+			 System.out.println("Maisons (sans appels) ajoutée avec succès");
+    		continu = add_appel_maison(entryAppels.getKey(),entryAppels.getValue(),dataset,idMaison);
+    		if (continu ==true)
+    		{System.out.println("Nom de maison ajouté avec succès");}		
+    	} 
+		 return continu;
+	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	}
 
 
-}

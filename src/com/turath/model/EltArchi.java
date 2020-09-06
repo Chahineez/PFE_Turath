@@ -11,6 +11,7 @@ public class EltArchi {
 	private List<Fonction> fonctions;
 	private List<Source> sources;
 	private List<Image> images;
+
 	
 	/******CONSTRUCTOR**********/
 	
@@ -80,5 +81,5 @@ public class EltArchi {
 	}
 
 	
-	
+
 }

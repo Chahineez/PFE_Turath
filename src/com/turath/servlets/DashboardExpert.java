@@ -1,6 +1,11 @@
 package com.turath.servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.turath.SDBActorsBean.Architecte;
+import com.turath.SDBActorsDAO.SDBAdminConnection;
 import com.turath.control.Recherche;
 import com.turath.sdb.SDBManipulation;
 
@@ -49,7 +56,43 @@ public class DashboardExpert extends HttpServlet {
     	session.setAttribute("nbEspaces", nbEspaces);
     	
     	if (session.getAttribute("expertLog") != null) {	
-		
+    		List<com.turath.model.Maison> listMaisons=new ArrayList<com.turath.model.Maison>();
+			SDBAdminConnection SDBAdminConn = new SDBAdminConnection ();
+			try {
+				Connection con= SDBAdminConn.connect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(rech.AfficherMaisonsNonValides(sdb.getDataset(),0));
+			listMaisons=rech.AfficherMaisonsNonValides(sdb.getDataset(),0);
+			session.setAttribute("listMaisons", listMaisons);
+			
+			com.turath.model.Maison maison= new com.turath.model.Maison();
+			//doGet(request,response);
+			if (request.getParameter("val") != null) {
+			int val = Integer.valueOf(request.getParameter("val"));
+			int id  = Integer.parseInt(request.getParameter("num"));
+
+			if (val== 1) { // Is the valide button pressed?
+		        rech.ValidateMaison(maison,id);
+		        System.out.println("validé");
+
+		    }
+		    if (val ==0) { // Is the reject button pressed?
+		        rech.RefuseMaison(maison,id);
+		        System.out.println("refusé");
+		        //response.sendRedirect( request.getContextPath() +
+						//"/Dashboard" );
+		    }
+		    }
+			else {
+				System.out.println("val null");}
+			
+			
+			
+			
+			
 		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
 		}
 		else {

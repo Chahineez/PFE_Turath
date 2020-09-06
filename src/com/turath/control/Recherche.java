@@ -25,7 +25,7 @@ public class Recherche {
 			
 			 {
 				 String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
-					  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison "
+					  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison ?valide ?supprime"
 					  		+ "where {graph ?g {"        
 			          + "?Maison <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 			          + "?Maison <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
@@ -35,6 +35,8 @@ public class Recherche {
 			          + "?Maison <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 			          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceSol> ?surfaceSol."
 			          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceMaison> ?surfaceMaison."
+			          + "?Maison <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+			          + "?Maison <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 			         
 			      
 			         + "}}";
@@ -58,9 +60,11 @@ public class Recherche {
 						    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 						    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 						    node = soln.get("surfaceSol"); String surfaceSol = node.toString();
-						    node = soln.get("surfaceMaison"); String surfaceMaison = node.toString();
+						    node = soln.get("surfaceMaison"); String surfaceMaison = node.toString();						   
+						    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+						    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 						    mai= new Maison(idEltPatri,descEltPatri,altitude,longitude,
-						    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images );
+						    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images, valide, supprime );
 						  
 						    mais.add(mai);
 						    }
@@ -78,7 +82,7 @@ public class Recherche {
 		
 		 {
 			  String qs1 = "Select ?descEltPatri ?altitude"
-			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison "
+			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison ?valide ?supprime"
 			  		+ "where {graph ?g {"
 			  		
 		      + "?Maison <http://www.w3.org/ontologies/patriArchi#idEltPatri> "+idMaison+"."
@@ -89,6 +93,8 @@ public class Recherche {
 	          + "?Maison <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 	          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceSol> ?surfaceSol."
 	          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceMaison> ?surfaceMaison."
+	          + "?Maison <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Maison <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 	          
 	         + "}}";
 
@@ -112,8 +118,10 @@ public class Recherche {
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("surfaceSol"); String surfaceSol = node.toString();
 				    node = soln.get("surfaceMaison"); String surfaceMaison = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    mai= new Maison(idMaison,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images );
+				    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images, valide, supprime );
 				  
 				    }
 			   return mai;
@@ -126,7 +134,7 @@ public class Recherche {
 		{
 			 try	
 			 { String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude ?longitude "
-				  		+ "?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison "
+				  		+ "?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison ?valide ?supprime "
 				  		+ "where {graph ?g {"
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#SappelerEP> ?AppellationEP."          
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
@@ -137,6 +145,8 @@ public class Recherche {
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceSol> ?surfaceSol."
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceMaison> ?surfaceMaison."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 		          + "?AppellationEP <http://www.w3.org/ontologies/patriArchi#appelEP> \""+appel+"\" ."
 		         + "}}";
 				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -160,8 +170,10 @@ public class Recherche {
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("surfaceSol"); String surfaceSol = node.toString();
 					    node = soln.get("surfaceMaison"); String surfaceMaison = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    mai= new Maison(idEltPatri,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images );			  
+					    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images, valide, supprime );			  
 					    mais.add(mai);
 					    }
 				   return mais;
@@ -174,7 +186,7 @@ public class Recherche {
 		 {
 			 try			
 			 {    String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude"
-				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison "
+				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison ?valide ?supprime "
 				  + "where {graph ?g {"			 
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
@@ -185,6 +197,8 @@ public class Recherche {
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceSol> ?surfaceSol."
 		          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceMaison> ?surfaceMaison."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 		          + "?Region <http://www.w3.org/ontologies/patriArchi#nomRegion> \""+nomRegion+"\" ."
 		         + "}}";
 				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -209,14 +223,74 @@ public class Recherche {
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("surfaceSol"); String surfaceSol = node.toString();
 					    node = soln.get("surfaceMaison"); String surfaceMaison = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    mai= new Maison(idEltPatri,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images );
+					    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images, valide, supprime );
 					  
 					    mais.add(mai);
 					    }
 				   return mais;
 				 } } 
 			 finally {} }
+		 /***************Liste des maisons non valides *************************/
+		 public List<Maison> AfficherMaisonsNonValides (Dataset dataset, int valide)
+		 {
+			 try			
+			 {    String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude"
+				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSol ?surfaceMaison ?supprime "
+				  + "where {graph ?g {"			 
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude." 
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceSol> ?surfaceSol."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#surfaceMaison> ?surfaceMaison."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
+		          + "?Maison <http://www.w3.org/ontologies/patriArchi#valide> \""+valide+"\" ."
+		         + "}}";
+				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
+				   ResultSet rs = qExec.execSelect() ;
+				 //  ResultSetFormatter.out(rs) ;
+				   QuerySolution soln;
+				   RDFNode node;
+				   Maison mai;
+				   List<Maison> mais = new ArrayList<Maison>();
+				
+				   List<String> appels;
+				   List<String> images;
+				   while(rs.hasNext()){
+					    soln = rs.nextSolution() ;
+					    node = soln.get("idEltPatri") ;int idEltPatri = (int)node.asNode().getLiteralValue();
+					    appels = rechAppelEP(dataset,idEltPatri);
+					    images =rechImagesEP(dataset, idEltPatri);
+					    node = soln.get("descEltPatri"); String descEltPatri = node.toString();
+					    node = soln.get("altitude") ; float altitude = Float.parseFloat(node.toString()) ;
+					    node = soln.get("longitude") ;float longitude = Float.parseFloat(node.toString()) ;
+					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
+					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
+					    node = soln.get("surfaceSol"); String surfaceSol = node.toString();
+					    node = soln.get("surfaceMaison"); String surfaceMaison = node.toString();
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
+					    mai= new Maison(idEltPatri,descEltPatri,altitude,longitude,
+					    		dateConstruction,périodeConstruction,surfaceSol, surfaceMaison,appels, images, valide, supprime );
+					  
+					    mais.add(mai);
+					    }
+				   return mais;
+				 } } 
+			 finally {} }
+		 /****************valider ou refuser ajout d'une maison ****************/
+		 public void ValidateMaison(Maison maison, int id) {
+			 
+		 }
+		 
+		 public void RefuseMaison (Maison maison, int id) {
+			 
+		 }
 	 
 	 /******************************Liste des espaces*********************************/
 	 public List<Espace> listeEspaces (Dataset dataset)
@@ -225,7 +299,7 @@ public class Recherche {
 		
 		 {
 			  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
-			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace where {graph ?g {"          
+			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace ?valide ?supprime where {graph ?g {"          
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
@@ -233,6 +307,8 @@ public class Recherche {
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#typeEspace> ?typeEspace." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#valide> ?valide." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime." 
 	         + "}}";
 
 			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -255,8 +331,10 @@ public class Recherche {
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("typeEspace"); String typeEspace = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    espace= new Espace(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction, typeEspace, appels, images);
+				    		dateConstruction,périodeConstruction, typeEspace, appels, images, valide, supprime);
 				  
 				    espaces.add(espace);
 				    }
@@ -272,14 +350,16 @@ public class Recherche {
 			 try		
 			 {
 				 String qs1="Select ?idEltPatri ?descEltPatri ?altitude"
-					  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace where {graph ?g {"          
+					  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace ?valide ?supprime where {graph ?g {"          
 			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#idEltPatri> "+idEsp+"." 
 			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
 			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
 			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude." 
 			          + "?Espace <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 			          + "?Espace <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
-			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#typeEspace> ?typeEspace." 
+			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#typeEspace> ?typeEspace."
+			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+			          + "?Espace  <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 			          + "}}";
 
 				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -300,8 +380,10 @@ public class Recherche {
 					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("typeEspace"); String typeEspace = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    esp= new Espace(idEsp,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction, typeEspace, appels, images);
+					    		dateConstruction,périodeConstruction, typeEspace, appels, images, valide, supprime);
 					    }
 				   return esp;
 				 }
@@ -314,7 +396,7 @@ public class Recherche {
 		 try	
 		 {
 			  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude"
-			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace where {graph ?g {"
+			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace ?valide ?supprime where {graph ?g {"
 			 
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#SappelerEP> ?AppellationEP."          
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
@@ -324,6 +406,8 @@ public class Recherche {
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#typeEspace> ?typeEspace." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime." 
 	          + "?AppellationEP <http://www.w3.org/ontologies/patriArchi#appelEP> \""+appelEspace+"\" ."
 	         + "}}";
 
@@ -347,8 +431,10 @@ public class Recherche {
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("typeEspace"); String typeEspace = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    espace= new Espace(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction, typeEspace, appels, images);		  
+				    		dateConstruction,périodeConstruction, typeEspace, appels, images, valide, supprime);		  
 				    espaces.add(espace);
 				    }	
 			   return espaces;
@@ -362,7 +448,7 @@ public class Recherche {
 	 {
 		 try		
 		 {    String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude"
-			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace where {graph ?g {"		 
+			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace ?valide ?supprime where {graph ?g {"		 
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
@@ -371,6 +457,8 @@ public class Recherche {
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Espace <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#typeEspace> ?typeEspace." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#valide> ?valide." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime." 
 	          + "?Region <http://www.w3.org/ontologies/patriArchi#nomRegion> \""+nomRegion+"\" ."
 	         + "}}";
 			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -392,8 +480,54 @@ public class Recherche {
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("typeEspace"); String typeEspace = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    espace= new Espace(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction, typeEspace, appels, images);		  
+				    		dateConstruction,périodeConstruction, typeEspace, appels, images, valide, supprime);		  
+				    espaces.add(espace);
+				    }	
+			   return espaces;
+			 } } 
+		 finally { }}
+	 
+	 public List<Espace> AfficherEspacesNonValides (Dataset dataset, int valide)
+	 {
+		 try		
+		 {    String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude"
+			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeEspace  ?supprime where {graph ?g {"		 
+	          + "?Espace <http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude." 
+	          + "?Espace <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
+	          + "?Espace <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#typeEspace> ?typeEspace." 
+	          + "?Espace  <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime." 
+	          + "?Espace <http://www.w3.org/ontologies/patriArchi#valide> \""+valide+"\" ."
+	         + "}}";
+			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
+			   ResultSet rs = qExec.execSelect() ;
+			   QuerySolution soln;
+			   RDFNode node;
+			   Espace espace;
+			   List<Espace> espaces = new ArrayList<Espace>();
+			   List<String> appels;
+			   List<String> images;
+			   while(rs.hasNext()){
+				    soln = rs.nextSolution() ;
+				    node = soln.get("idEltPatri") ;int idEltPatri = (int)node.asNode().getLiteralValue();
+				    appels = rechAppelEP(dataset,idEltPatri);
+				    images = rechImagesEP(dataset, idEltPatri);
+				    node = soln.get("descEltPatri"); String descEltPatri = node.toString();
+				    node = soln.get("altitude") ; float altitude = Float.parseFloat(node.toString()) ;
+				    node = soln.get("longitude") ;float longitude = Float.parseFloat(node.toString()) ;
+				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
+				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
+				    node = soln.get("typeEspace"); String typeEspace = node.toString();
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
+				    espace= new Espace(idEltPatri,descEltPatri,altitude,longitude,
+				    		dateConstruction,périodeConstruction, typeEspace, appels, images, valide, supprime);		  
 				    espaces.add(espace);
 				    }	
 			   return espaces;
@@ -405,7 +539,7 @@ public class Recherche {
 		 try	
 		 {
 			  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
-			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite where {graph ?g {"       
+			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite ?valide ?supprime where {graph ?g {"       
 	          + "?Site <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 	          + "?Site <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
 	          + "?Site <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
@@ -413,6 +547,8 @@ public class Recherche {
 	          + "?Site <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Site <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 	          + "?Site <http://www.w3.org/ontologies/patriArchi#surfaceSite> ?surfaceSite."
+	          + "?Site <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Site <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 	         + "}}";
 
 			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -435,8 +571,10 @@ public class Recherche {
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("surfaceSite"); String surfaceSite = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    site= new Site(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction, surfaceSite, appels,images);
+				    		dateConstruction,périodeConstruction, surfaceSite, appels,images, valide, supprime);
 				  
 				    sites.add(site);
 				    }
@@ -452,7 +590,7 @@ public class Recherche {
 			 try		
 			 {
 				  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
-				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite where {graph ?g {"       
+				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite ?valide ?supprime where {graph ?g {"       
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#idEltPatri> "+idSite+"." 
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
@@ -460,6 +598,8 @@ public class Recherche {
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#surfaceSite> ?surfaceSite."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 		          + "}}";
 				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
 				   ResultSet rs = qExec.execSelect() ;
@@ -482,8 +622,10 @@ public class Recherche {
 					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("surfaceSite"); String surfaceSite = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    site= new Site(idSite,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction, surfaceSite, appels,images);
+					    		dateConstruction,périodeConstruction, surfaceSite, appels,images, valide, supprime);
 					    }
 			
 				   return site;
@@ -499,7 +641,7 @@ public class Recherche {
 			 try			
 			 {
 				  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
-				  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite where {graph ?g {"	 
+				  		+ "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite ?valide ?supprime where {graph ?g {"	 
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#SappelerEP> ?AppellationEP."          
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
@@ -508,6 +650,8 @@ public class Recherche {
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#surfaceSite> ?surfaceSite."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#susupprime> ?supprime."
 		          + "?AppellationEP <http://www.w3.org/ontologies/patriArchi#appelEP> \""+appel+"\" ."
 		         + "}}";
 
@@ -531,8 +675,10 @@ public class Recherche {
 					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("surfaceSite"); String surfaceSite = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    site= new Site(idEltPatri,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction, surfaceSite, appels,images);
+					    		dateConstruction,périodeConstruction, surfaceSite, appels,images, valide, supprime);
 
 					    sites.add(site);
 					    }
@@ -547,7 +693,7 @@ public class Recherche {
 			 try			
 			 {
 				  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
-				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite where {graph ?g {"	 
+				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite ?valide ?supprime where {graph ?g {"	 
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
@@ -556,6 +702,8 @@ public class Recherche {
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
 		          + "?Site <http://www.w3.org/ontologies/patriArchi#surfaceSite> ?surfaceSite."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 		          + "?Region <http://www.w3.org/ontologies/patriArchi#nomRegion> \""+nomRegion+"\" ."
 		         + "}}";
 
@@ -579,8 +727,10 @@ public class Recherche {
 					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("surfaceSite"); String surfaceSite = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    site= new Site(idEltPatri,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction, surfaceSite, appels,images);
+					    		dateConstruction,périodeConstruction, surfaceSite, appels,images, valide, supprime);
 					  
 					    sites.add(site);
 					    }
@@ -591,6 +741,56 @@ public class Recherche {
 			 finally {  }
 		 }
 		 
+		 public List<Site> AfficherSitesNonValides (Dataset dataset, int valide)
+		 {
+			 try			
+			 {
+				  String qs1 = "Select ?idEltPatri ?descEltPatri ?altitude "
+				  + "?longitude ?dateConstruction  ?périodeConstruction ?surfaceSite  ?supprime where {graph ?g {"	 
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude." 
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#surfaceSite> ?surfaceSite."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
+		          + "?Site <http://www.w3.org/ontologies/patriArchi#valide> \""+valide+"\" ."
+		         + "}}";
+
+				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
+				   ResultSet rs = qExec.execSelect() ;
+				   QuerySolution soln;
+				   RDFNode node;
+				   Site site;
+				   List<Site> sites = new ArrayList<Site>();
+				   List<String> appels;
+				   List<String> images;
+				
+				   while(rs.hasNext()){
+					    soln = rs.nextSolution() ;
+					    node = soln.get("idEltPatri") ;int idEltPatri = (int)node.asNode().getLiteralValue();
+					    appels = rechAppelEP(dataset,idEltPatri);
+					    images =rechImagesEP(dataset, idEltPatri);
+					    node = soln.get("descEltPatri"); String descEltPatri = node.toString();
+					    node = soln.get("altitude") ; float altitude = Float.parseFloat(node.toString()) ;
+					    node = soln.get("longitude") ;float longitude = Float.parseFloat(node.toString()) ;
+					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
+					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
+					    node = soln.get("surfaceSite"); String surfaceSite = node.toString();
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
+					    site= new Site(idEltPatri,descEltPatri,altitude,longitude,
+					    		dateConstruction,périodeConstruction, surfaceSite, appels,images, valide, supprime);
+					  
+					    sites.add(site);
+					    }
+			
+				   return sites;
+				 }
+			 } 
+			 finally {  }
+		 }
 		 
 
 	 /******************************Lister tous les monuments*************************************/
@@ -600,7 +800,7 @@ public class Recherche {
 		 try		
 		 {
 			  String qs1 = "Select ?idEltPatri  ?descEltPatri ?altitude "
-			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeMo where {graph ?g {"
+			  		+ "?longitude ?dateConstruction  ?périodeConstruction ?typeMo ?valide ?supprime where {graph ?g {"
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude." 
@@ -608,6 +808,8 @@ public class Recherche {
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#typeMo> ?typeMo."
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 	         + "}}";
 
 			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -630,8 +832,10 @@ public class Recherche {
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("typeMo"); String typeMo = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    mon= new Monument(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction, typeMo,appels,images );			  
+				    		dateConstruction,périodeConstruction, typeMo,appels,images, valide, supprime );			  
 				    mons.add(mon);
 				    }
 			   return mons;
@@ -645,7 +849,7 @@ public class Recherche {
 			 try
 			 {
 				  String qs1 = "Select ?descEltPatri ?altitude"
-				  		+ "?longitude ?dateConstruction ?périodeConstruction ?typeMo "
+				  		+ "?longitude ?dateConstruction ?périodeConstruction ?typeMo ?valide ?supprime "
 				  		+ "where {graph ?g {"
 			      + "?Monument <http://www.w3.org/ontologies/patriArchi#idEltPatri> "+idMonument+"."
 		          + "?Monument <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
@@ -653,7 +857,9 @@ public class Recherche {
 		          + "?Monument <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude."
 		          + "?Monument <http://www.w3.org/ontologies/patriArchi#typeMo> ?typeMo."
 		          + "?Monument <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
-		          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."	         
+		          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."	 
+		          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> ?valide."	 
+		          + "?Monument <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."	 
 		         + "}}";
 
 				   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -674,8 +880,10 @@ public class Recherche {
 					    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 					    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 					    node = soln.get("typeMo"); String typeMo = node.toString();
+					    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+					    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 					    mon= new Monument(idMonument,descEltPatri,altitude,longitude,
-					    		dateConstruction,périodeConstruction, typeMo, appels,images );
+					    		dateConstruction,périodeConstruction, typeMo, appels,images, valide, supprime );
 					    }
 				   return mon;
 				 }
@@ -689,7 +897,7 @@ public class Recherche {
 	 {
 		 try	
 		 {    String qs1 = "Select ?idEltPatri  ?descEltPatri ?altitude"
-			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeMo where {graph ?g {"
+			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeMo ?valide ?supprime where {graph ?g {"
 			 
 	          + "?Monument<http://www.w3.org/ontologies/patriArchi#SappelerEP> ?AppellationEP."          
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
@@ -699,6 +907,8 @@ public class Recherche {
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#typeMo> ?typeMo."
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 	          + "?AppellationEP <http://www.w3.org/ontologies/patriArchi#appelEP> \""+appel+"\" ."
 	         + "}}";
 
@@ -722,8 +932,10 @@ public class Recherche {
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
 				    node = soln.get("typeMo"); String typeMo = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    mon= new Monument(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction, typeMo, appels,images );			  
+				    		dateConstruction,périodeConstruction, typeMo, appels,images, valide, supprime );			  
 				    mons.add(mon);
 				    }	
 			   return mons;
@@ -736,7 +948,7 @@ public class Recherche {
 		 try		
 		 {
 			  String qs1 = "Select ?idEltPatri  ?descEltPatri ?altitude"
-			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeMo where {graph ?g {" 
+			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeMo ?valide ?supprime where {graph ?g {" 
 	          + "?Monument<http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
@@ -745,6 +957,8 @@ public class Recherche {
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#typeMo> ?typeMo." 
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
 	          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
 	          + "?Region <http://www.w3.org/ontologies/patriArchi#nomRegion> \""+nomRegion+"\" ."
 	         + "}}";
 			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
@@ -768,15 +982,112 @@ public class Recherche {
 				    node = soln.get("typeMo") ;String typeMo  = node.toString();
 				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
 				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
+				    node = soln.get("valide"); int valide = Integer.parseInt(node.toString());
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
 				    mon= new Monument(idEltPatri,descEltPatri,altitude,longitude,
-				    		dateConstruction,périodeConstruction,typeMo, appels,images );  
+				    		dateConstruction,périodeConstruction,typeMo, appels,images, valide, supprime );  
 			        mons.add(mon);
 	    		    }
 			   return mons;
 			 }} 
 		 finally { }
 	 }
-	 
+	 public List<Monument> rechMonumentParRegion (Dataset dataset, int valide)
+	 {
+		 try		
+		 {
+			  String qs1 = "Select ?idEltPatri  ?descEltPatri ?altitude"
+			  + "?longitude ?dateConstruction  ?périodeConstruction ?typeMo ?valide ?supprime where {graph ?g {" 
+	          + "?Monument<http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude."  
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#typeMo> ?typeMo." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> ?valide."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> \""+valide+"\" ."
+	         + "}}";
+			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
+			   ResultSet rs = qExec.execSelect() ;
+			 //  ResultSetFormatter.out(rs) ;
+			   QuerySolution soln;
+			   RDFNode node;
+			   Monument mon;
+			   List<String> appels;
+			   List<String> images;
+			   List<Monument> mons = new ArrayList<Monument>();
+			   
+			   while(rs.hasNext()){
+				    soln = rs.nextSolution() ;
+				    node = soln.get("idEltPatri") ;int idEltPatri = (int)node.asNode().getLiteralValue();
+				    appels = rechAppelEP(dataset,idEltPatri);
+				    images = rechImagesEP(dataset, idEltPatri);
+				    node = soln.get("descEltPatri"); String descEltPatri = node.toString();
+				    node = soln.get("altitude") ; float altitude = Float.parseFloat(node.toString()) ;
+				    node = soln.get("longitude") ;float longitude = Float.parseFloat(node.toString()) ;
+				    node = soln.get("typeMo") ;String typeMo  = node.toString();
+				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
+				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
+				    mon= new Monument(idEltPatri,descEltPatri,altitude,longitude,
+				    		dateConstruction,périodeConstruction,typeMo, appels,images, valide, supprime );  
+			        mons.add(mon);
+	    		    }
+			   return mons;
+			 }} 
+		 finally { }
+	 }
+
+	 public List<Monument> AfficherMonumentsNonValides(Dataset dataset, int valide)
+	 {
+		 try		
+		 {
+			  String qs1 = "Select ?idEltPatri  ?descEltPatri ?altitude"
+			  + "?longitude ?dateConstruction ?périodeConstruction ?typeMo ?supprime where {graph ?g {" 
+	          + "?Monument<http://www.w3.org/ontologies/patriArchi#SeSituerEP> ?Region."          
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#idEltPatri> ?idEltPatri." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#descEltPatri> ?descEltPatri." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#altitude> ?altitude."  
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#longitude> ?longitude." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#typeMo> ?typeMo." 
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#dateConstruction> ?dateConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#périodeConstruction> ?périodeConstruction."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#supprime> ?supprime."
+	          + "?Monument <http://www.w3.org/ontologies/patriArchi#valide> \""+valide+"\" ."
+	         + "}}";
+			   try(QueryExecution qExec = QueryExecutionFactory.create(qs1, dataset)) {
+			   ResultSet rs = qExec.execSelect() ;
+			 //  ResultSetFormatter.out(rs) ;
+			   QuerySolution soln;
+			   RDFNode node;
+			   Monument mon;
+			   List<String> appels;
+			   List<String> images;
+			   List<Monument> mons = new ArrayList<Monument>();
+			   
+			   while(rs.hasNext()){
+				    soln = rs.nextSolution() ;
+				    node = soln.get("idEltPatri") ;int idEltPatri = (int)node.asNode().getLiteralValue();
+				    appels = rechAppelEP(dataset,idEltPatri);
+				    images = rechImagesEP(dataset, idEltPatri);
+				    node = soln.get("descEltPatri"); String descEltPatri = node.toString();
+				    node = soln.get("altitude") ; float altitude = Float.parseFloat(node.toString()) ;
+				    node = soln.get("longitude") ;float longitude = Float.parseFloat(node.toString()) ;
+				    node = soln.get("typeMo") ;String typeMo  = node.toString();
+				    node = soln.get("dateConstruction"); String dateConstruction = node.toString();
+				    node = soln.get("périodeConstruction"); String périodeConstruction = node.toString();
+				    node = soln.get("supprime"); int supprime = Integer.parseInt(node.toString());
+				    mon= new Monument(idEltPatri,descEltPatri,altitude,longitude,
+				    		dateConstruction,périodeConstruction,typeMo, appels,images, valide, supprime );  
+			        mons.add(mon);
+	    		    }
+			   return mons;
+			 }} 
+		 finally { }
+	 }
 
 	 /************************/
 		public List<String> rechAppelEP(Dataset dataset, int idEltPatri )

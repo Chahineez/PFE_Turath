@@ -7,7 +7,7 @@
 <title>Ajouter élément</title>
 </head>
 <body>
-<%@include file="headerArchitecte.jsp" %>
+<%@include file="header.jsp" %>
   <br>
   <br>
 <div class="container"> 
@@ -17,34 +17,28 @@
   	
   		<div class="bg-faded p-5">
   
-      	<p class="h5 mb-6">Ajouter une maison traditionnelle :</p>
+      	<p class="h5 mb-6">Ajouter une maison traditionnelle :</p><br>
       <div class="form-row mb-4">
-
-        </div>
-         <div class="row">
-          <p >Le nom de la maison:
+      
+       <div class="form-group">
+      <div class="col-lg-30">
+            <p >Le nom de la maison:
             <input type="text" class="form-control form-control-lg form-control-a" placeholder="Nom de la maison"  name="nom_mai" id="nom_mai">
           </p>
-            <p> Source:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Source du nom"  name="sourceNom" id="SourceNom">
-            </p>
-            </div>
+        </div>
 
 <input type="checkbox" onchange="handleNom(this);"> Cette maison a un autre nom.<br><br>
-<!--  <div id="autre_nom" style="visibility:hidden;class=col-lg-30">
+<div id="autre_nom" style="visibility:hidden;class=col-lg-30">
 <p >Le deuxième nom de la maison:
 <input type="text" class="form-control form-control-lg form-control-a" placeholder="Le deuxième nom de la maison"  name="nom_deux_mai" id="nom_deux_mai">
  </p>
-</div>    -->  
+</div>      
 
              <p >La description de la maison:
               <textarea  class="form-control" name="description_mai"  id="description_mai" 
               data-rule="required"  placeholder="Description de la maison"></textarea>
               </p>
-                <p> Source de la description:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Source de la description"  name="sourceDesc" id="SourceDesc">
-            </p>
-         <div class="row"> 
+              
               <p >Le type de la maison:
               <select class="form-control form-control-lg form-control-a" name="type_mai" id="type_mai">
                   <option value="1">Maison à West Eddar</option>
@@ -53,11 +47,6 @@
               </select>
               </p>
               
-            <p> Source:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Source du type"  name="sourceType" id="sourceType">
-            </p>
-            </div>
-
             
                  
            <div class="row">
@@ -66,9 +55,6 @@
             </p>
             <p> Longitude:
             <input type="text" class="form-control form-control-lg form-control-a" placeholder="Longitude"  name="longitude_mai" id="longitude_mai">
-            </p>
-             <p> Source:
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Source des coordonnées"  name="sourceCoord" id="sourceCoord">
             </p>
             </div>
        

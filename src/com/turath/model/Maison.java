@@ -8,19 +8,23 @@ public class Maison  extends EltPatri
 	private String surfaceSol;
 	private String surfaceMaison;
 
+	
 	public Maison(int idEltPatri,String descEltPatri,float altitude,
 			float longitude, String dateConstruction,String périodeConstruction, 
 			String surfaceSol, String surfaceMaison,List<String> appels, 
-			List<String> images)
+			List<String> images, int valide, int supprime)
 	{
 		super(idEltPatri,descEltPatri,altitude,longitude,
-				dateConstruction,périodeConstruction,  appels,  images);
+				dateConstruction,périodeConstruction,  appels,  images, valide, supprime);
 		
 		this.surfaceSol= surfaceSol;
 		this.surfaceMaison = surfaceMaison;
 	}
 
-	
+	public Maison() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	
 	public String getSurfaceSol() {
 		return surfaceSol;

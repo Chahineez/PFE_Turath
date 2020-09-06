@@ -7,10 +7,10 @@ public class Monument extends EltPatri
 	
 	public Monument(int idEltPatri,String descEltPatri,float altitude,
 			float longitude, String dateConstruction,String périodeConstruction, String typeMo, List<String> appels, 
-			List<String> images)
+			List<String> images, int valide, int supprime)
 	{
 		super(idEltPatri,descEltPatri,altitude,longitude,
-				dateConstruction,périodeConstruction, appels, images);
+				dateConstruction,périodeConstruction, appels, images, valide, supprime);
 		this.typeMo=typeMo;
 	
 	}
